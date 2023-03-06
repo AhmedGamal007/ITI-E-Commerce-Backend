@@ -9,9 +9,11 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
 @Table(name = "order_has_product", catalog = "ecommerce")
+@Data
 public class OrderHasProduct implements java.io.Serializable {
 
     private OrderHasProductId id;

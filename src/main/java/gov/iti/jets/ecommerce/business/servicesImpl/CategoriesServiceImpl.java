@@ -1,5 +1,7 @@
 package gov.iti.jets.ecommerce.business.servicesImpl;
 
-public class CategoriesServiceImpl {
+import gov.iti.jets.ecommerce.business.services.CategoriesService;
+
+public class CategoriesServiceImpl implements CategoriesService {
     
 }
