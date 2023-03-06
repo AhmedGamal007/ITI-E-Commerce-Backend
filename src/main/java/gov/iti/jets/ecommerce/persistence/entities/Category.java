@@ -11,11 +11,14 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import lombok.Data;
+
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "category", catalog = "ecommerce", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
+@Data
 public class Category implements java.io.Serializable {
 
     private Integer id;

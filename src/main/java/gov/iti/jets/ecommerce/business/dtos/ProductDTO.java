@@ -15,6 +15,5 @@ public class ProductDTO {
     private Integer stock;
     private String imagePath;
     private Double rate;
-    private Set<CategoriesDTO> categories = new HashSet<CategoriesDTO>(0);
     
 }

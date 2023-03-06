@@ -1,5 +1,7 @@
 package gov.iti.jets.ecommerce.business.servicesImpl;
 
-public class AdminServiceImpl {
+import gov.iti.jets.ecommerce.business.services.AdminService;
+
+public class AdminServiceImpl implements AdminService {
     
 }

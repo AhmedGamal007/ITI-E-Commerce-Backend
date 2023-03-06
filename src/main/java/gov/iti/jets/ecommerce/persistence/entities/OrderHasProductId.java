@@ -2,8 +2,10 @@ package gov.iti.jets.ecommerce.persistence.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import lombok.Data;
 
 @Embeddable
+@Data
 public class OrderHasProductId implements java.io.Serializable {
 
     private int orderId;
