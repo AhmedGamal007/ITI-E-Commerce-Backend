@@ -18,7 +18,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "category", catalog = "ecommerce", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
-@Data
 public class Category implements java.io.Serializable {
 
     private Integer id;

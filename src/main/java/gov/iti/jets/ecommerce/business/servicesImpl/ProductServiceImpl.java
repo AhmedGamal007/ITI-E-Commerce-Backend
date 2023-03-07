@@ -11,6 +11,7 @@ import gov.iti.jets.ecommerce.business.dtos.CategoriesDTO;
 import gov.iti.jets.ecommerce.business.dtos.ProductCategoriesDTO;
 import gov.iti.jets.ecommerce.business.mappers.ProductHasCategoriesMapper;
 import gov.iti.jets.ecommerce.business.services.ProductService;
+import gov.iti.jets.ecommerce.persistence.entities.Product;
 import gov.iti.jets.ecommerce.persistence.repositories.ProductRepo;
 
 @Service
@@ -32,15 +33,21 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
-    // public Optional<ProductCategoriesDTO> getProduct(Integer id) {
-    
-    //         return productRepo.findById(id).map(productMapper::productToProductDto);
+    public Optional<ProductCategoriesDTO> getProduct(Integer id) {
+           
+           Optional<Product> product = productRepo.findById(id);
 
-    // }
+           if (product.isEmpty()){
+            // throwing an exception
+           }
+      
+            return (product.map(productMapper::productToProductDtoId));
 
-    // public void addProduct (ProductDTO productDTO){
+    }
 
-    //     productRepo.save
-    // }
+    public void addProduct (ProductCategoriesDTO productDTO){
+
+        productRepo.save(productMapper.productDtoToProduct(productDTO));
+    }
 
 }
