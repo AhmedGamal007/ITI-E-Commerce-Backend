@@ -36,7 +36,6 @@ public class OrderHasProduct implements java.io.Serializable {
     }
 
     @EmbeddedId
-
     @AttributeOverrides({
             @AttributeOverride(name = "orderId", column = @Column(name = "order_id", nullable = false)),
             @AttributeOverride(name = "productId", column = @Column(name = "product_id", nullable = false)) })

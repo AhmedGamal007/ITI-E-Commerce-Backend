@@ -1,6 +1,6 @@
 package gov.iti.jets.ecommerce.business.dtos;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.*;
 
 import lombok.*;
@@ -15,6 +15,7 @@ public class OrdersDTO {
     private Boolean isSubmitted = false;
     private String paymentType;
     private Timestamp submitDate;
+    private CustomerDTO customerDTO;
     private AddressDTO addressDTO;
     private Set<ProductsOrderDTO> orderHasProducts = new HashSet<ProductsOrderDTO>(0);
     
