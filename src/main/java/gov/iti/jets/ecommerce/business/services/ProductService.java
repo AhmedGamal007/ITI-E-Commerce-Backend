@@ -1,7 +1,6 @@
 package gov.iti.jets.ecommerce.business.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import gov.iti.jets.ecommerce.business.dtos.ProductCategoriesDTO;
 

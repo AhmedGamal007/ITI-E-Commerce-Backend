@@ -6,6 +6,7 @@ import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.springframework.stereotype.Component;
 
 import gov.iti.jets.ecommerce.business.dtos.CategoriesDTO;
 import gov.iti.jets.ecommerce.business.dtos.ProductCategoriesDTO;
@@ -15,7 +16,6 @@ import gov.iti.jets.ecommerce.persistence.entities.Product;
 
 @Mapper(componentModel = "spring")
 public interface ProductHasCategoriesMapper {
-
 
 List<ProductCategoriesDTO> productToProductDto (List<Product> product);
 
