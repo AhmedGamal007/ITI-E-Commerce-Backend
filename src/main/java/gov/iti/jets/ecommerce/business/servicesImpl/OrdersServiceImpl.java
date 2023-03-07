@@ -1,5 +1,7 @@
 package gov.iti.jets.ecommerce.business.servicesImpl;
 
-public class OrdersServiceImpl {
+import gov.iti.jets.ecommerce.business.services.OrdersService;
+
+public class OrdersServiceImpl implements OrdersService {
     
 }

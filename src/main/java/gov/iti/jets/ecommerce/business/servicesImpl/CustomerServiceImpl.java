@@ -3,7 +3,6 @@ package gov.iti.jets.ecommerce.business.servicesImpl;
 import gov.iti.jets.ecommerce.business.dtos.CustomerDTO;
 import gov.iti.jets.ecommerce.business.mappers.CustomerMapper;
 import gov.iti.jets.ecommerce.business.services.CustomerService;
-import gov.iti.jets.ecommerce.persistence.entities.Admin;
 import gov.iti.jets.ecommerce.persistence.entities.Customer;
 import gov.iti.jets.ecommerce.persistence.repositories.CustomerRepo;
 import lombok.AllArgsConstructor;
@@ -75,4 +74,5 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer =customerRepo.save(customerMapper.customerDtoToCustomer(customerDTO));
         return customerMapper.customerToCustomerDto(customer);
     }
+
 }

@@ -1,5 +1,4 @@
 package gov.iti.jets.ecommerce.business.servicesImpl;
-
 import gov.iti.jets.ecommerce.business.dtos.AdminDTO;
 import gov.iti.jets.ecommerce.business.dtos.AdminRegisterDTO;
 import gov.iti.jets.ecommerce.business.mappers.AdminMapper;
@@ -21,18 +20,18 @@ public class AdminServiceImpl  implements AdminService {
 
     @Override
     public AdminDTO find(String username, String password) {
-       Admin admin =  adminRepo.findAdminByUserNameAndPassword(username , password);
-       if (admin != null){
+        Admin admin = adminRepo.findAdminByUserNameAndPassword(username, password);
+        if (admin != null) {
 
-       return  adminMapper.adminToAdminDto(admin);
-       }
-       return null;
+            return adminMapper.adminToAdminDto(admin);
+        }
+        return null;
     }
 
     @Override
     public AdminDTO find(Integer id) {
 
-        Optional <Admin> admin = adminRepo.findById(id);
+        Optional<Admin> admin = adminRepo.findById(id);
         return admin.map(adminMapper::adminToAdminDto).orElse(null);
     }
 
@@ -43,7 +42,7 @@ public class AdminServiceImpl  implements AdminService {
 
     @Override
     public AdminDTO add(AdminRegisterDTO adminRegisterDTO) {
-       Admin admin =  adminRepo.save(adminMapper.adminRegisterDtoToAdmin(adminRegisterDTO));
+        Admin admin = adminRepo.save(adminMapper.adminRegisterDtoToAdmin(adminRegisterDTO));
         return adminMapper.adminToAdminDto(admin);
     }
 
@@ -55,21 +54,24 @@ public class AdminServiceImpl  implements AdminService {
     @Override
     public AdminDTO update(AdminRegisterDTO adminRegisterDTO) {
         Admin oldAdmin = adminRepo.findById(adminRegisterDTO.getId()).orElse(null);
-        if(oldAdmin != null){
-            if(adminRegisterDTO.getPassword() == null){
+        if (oldAdmin != null) {
+            if (adminRegisterDTO.getPassword() == null) {
                 adminRegisterDTO.setPassword(oldAdmin.getPassword());
-            }if(adminRegisterDTO.getUserName() == null){
+            }
+            if (adminRegisterDTO.getUserName() == null) {
                 adminRegisterDTO.setUserName(oldAdmin.getUserName());
-            }if(adminRegisterDTO.getEmail() == null){
+            }
+            if (adminRegisterDTO.getEmail() == null) {
                 adminRegisterDTO.setEmail(oldAdmin.getEmail());
-            }if(adminRegisterDTO.getPhone() == null){
+            }
+            if (adminRegisterDTO.getPhone() == null) {
                 adminRegisterDTO.setPhone(oldAdmin.getPhone());
             }
         }
 
         Admin admin = adminRepo.save(adminMapper.adminRegisterDtoToAdmin(adminRegisterDTO));
 
-        return  adminMapper.adminToAdminDto(admin);
+        return adminMapper.adminToAdminDto(admin);
     }
 
 
