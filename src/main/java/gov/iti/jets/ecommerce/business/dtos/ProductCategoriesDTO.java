@@ -1,6 +1,6 @@
 package gov.iti.jets.ecommerce.business.dtos;
 
-import java.util.HashSet;
+// import java.util.HashSet;
 import java.util.Set;
 
 import gov.iti.jets.ecommerce.persistence.entities.Category;
@@ -18,6 +18,6 @@ public class ProductCategoriesDTO {
     private Integer stock;
     private String imagePath;
     private Double rate;
-    private Set<Category> categories = new HashSet<Category>(0);
+    private Set<Category> categories;
     
 }

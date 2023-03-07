@@ -13,7 +13,7 @@ import gov.iti.jets.ecommerce.persistence.entities.Category;
 import gov.iti.jets.ecommerce.persistence.entities.Product;
 
 
-@Mapper(componentModel = "spring", uses = {CategoriesMapper.class} )
+@Mapper(componentModel = "spring")
 public interface ProductHasCategoriesMapper {
 
 
