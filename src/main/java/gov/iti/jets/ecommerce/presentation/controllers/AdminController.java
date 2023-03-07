@@ -7,6 +7,7 @@ import gov.iti.jets.ecommerce.business.services.AdminService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -17,17 +18,34 @@ public class AdminController {
 
 
 
-//    @GetMapping
-//    @ResponseBody
-//    public AdminDTO getAdmin(){
-//        return  adminService.find("mohamed","123456");
-//    }
+    @GetMapping("/{id}")
+    @ResponseBody
+    public AdminDTO get(@PathVariable Integer id){
+        return  adminService.find(id);
+    }
+    @GetMapping("/all")
+    @ResponseBody
+    public List<AdminDTO> getAll(){
+        return  adminService.getAll();
+    }
+
 
     @PostMapping
     @ResponseBody
     public  AdminDTO add(@RequestBody AdminRegisterDTO adminRegisterDTO){
         return  adminService.add(adminRegisterDTO);
     }
+
+    @DeleteMapping
+    public  void  delete(@RequestBody  AdminDTO adminDTO){
+        adminService.delete(adminDTO);
+    }
+
+    @PatchMapping
+    public  AdminDTO update(@RequestBody  AdminRegisterDTO adminRegisterDTO){
+        return adminService.update(adminRegisterDTO);
+    }
+
 
     
 }

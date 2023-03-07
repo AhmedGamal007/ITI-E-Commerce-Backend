@@ -4,12 +4,15 @@ import gov.iti.jets.ecommerce.business.dtos.AdminDTO;
 import gov.iti.jets.ecommerce.business.dtos.AdminRegisterDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface AdminService {
-    public AdminDTO find(String username, String password);
-    public AdminDTO find(Integer id);
-    public AdminDTO add(AdminRegisterDTO adminRegisterDTO);
-    public void delete(AdminDTO adminDTO);
-    public AdminDTO update(AdminDTO adminDTO);
+     AdminDTO find(String username, String password);
+     AdminDTO find(Integer id);
+     List<AdminDTO> getAll();
+     AdminDTO add(AdminRegisterDTO adminRegisterDTO);
+     void delete(AdminDTO adminDTO);
+     AdminDTO update(AdminRegisterDTO adminRegisterDTO);
 
 }
