@@ -1,17 +1,22 @@
 package gov.iti.jets.ecommerce.business.servicesImpl;
 
 import gov.iti.jets.ecommerce.business.dtos.CustomerDTO;
+import gov.iti.jets.ecommerce.business.mappers.CustomerMapper;
 import gov.iti.jets.ecommerce.business.services.CustomerService;
+import gov.iti.jets.ecommerce.persistence.repositories.CustomerRepo;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@AllArgsConstructor
 @Service
 public class CustomerServiceImpl implements CustomerService {
+    private  final CustomerMapper customerMapper;
+    private  final CustomerRepo customerRepo;
 
     @Override
-    public List<CustomerDTO> getAll() {
-        return null;
+    public List<CustomerDTO> getAll(){
+        return  customerMapper.customerListToCustomerDtoList(customerRepo.findAll());
     }
 
     @Override
