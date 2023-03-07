@@ -2,8 +2,6 @@ package gov.iti.jets.ecommerce.business.dtos;
 
 // import java.util.HashSet;
 import java.util.Set;
-
-import gov.iti.jets.ecommerce.persistence.entities.Category;
 import lombok.*;
 
 @Data
@@ -18,6 +16,6 @@ public class ProductCategoriesDTO {
     private Integer stock;
     private String imagePath;
     private Double rate;
-    private Set<Category> categories;
+    private Set<CategoriesDTO> categories;
     
 }
