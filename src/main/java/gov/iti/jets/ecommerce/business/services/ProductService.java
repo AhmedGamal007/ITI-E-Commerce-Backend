@@ -11,7 +11,8 @@ public interface ProductService {
     public List<ProductCategoriesDTO> getAllProducts();
     public Optional<ProductCategoriesDTO> getProduct(Integer id);
     public void addProduct (ProductCategoriesDTO productDTO);
-    public void deleteById(Integer id);
+    public void updateProduct (ProductCategoriesDTO productDTO);
+    public void deleteProduct (Integer id);
 
 
 }

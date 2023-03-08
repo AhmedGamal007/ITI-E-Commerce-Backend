@@ -45,7 +45,13 @@ public class ProductServiceImpl implements ProductService {
         productRepo.save(productMapper.productDtoToProduct(productDTO));
     }
 
-    public void deleteById(Integer id) {
+    public void updateProduct(ProductCategoriesDTO productDTO) {
+
+        productRepo.save(productMapper.productDtoToProduct(productDTO));
+
+    }
+
+    public void deleteProduct(Integer id) {
 
         productRepo.deleteById(id);
     }
