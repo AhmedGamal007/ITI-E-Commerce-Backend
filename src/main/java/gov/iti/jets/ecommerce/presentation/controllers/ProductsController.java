@@ -49,20 +49,15 @@ public class ProductsController {
     }
 
         // update product
+        // Authorization required ****Pending****
         @PutMapping("/products")
         public void updateProduct (@RequestBody ProductCategoriesDTO productDTO){
     
             productService.addProduct(productDTO);
     }
 
-        // update product
-        @PutMapping("/products")
-        public void updateProduct (@RequestBody ProductCategoriesDTO productDTO){
-    
-            productService.addProduct(productDTO);
-        }
-    
         // delete product by id
+        // Authorization required ****Pending****
         @DeleteMapping("/products/{id}")
         public void deleteProduct (@PathVariable Integer id){
     
