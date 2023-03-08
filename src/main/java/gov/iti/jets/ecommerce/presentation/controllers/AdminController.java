@@ -1,26 +1,51 @@
 package gov.iti.jets.ecommerce.presentation.controllers;
 
 import gov.iti.jets.ecommerce.business.dtos.AdminDTO;
-import gov.iti.jets.ecommerce.business.mappers.AdminMapper;
-import gov.iti.jets.ecommerce.persistence.entities.Admin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import gov.iti.jets.ecommerce.business.dtos.AdminRegisterDTO;
+import gov.iti.jets.ecommerce.business.services.AdminService;
 
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+
+@AllArgsConstructor
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
-    @GetMapping
+    private final AdminService adminService;
+
+
+
+    @GetMapping("/{id}")
     @ResponseBody
-    public AdminDTO getAdmin(){
-        Admin  admin = new Admin();
-        admin.setId(5);
-        admin.setUserName("addd");
-        admin.setPassword("5555");
-        AdminDTO adminDto = AdminMapper.INSTANCE.adminToAdminDto(admin);
-        adminDto.setUserName("mohamed");
-        return  adminDto;
+    public AdminDTO get(@PathVariable Integer id){
+        return  adminService.find(id);
     }
+    @GetMapping("/all")
+    @ResponseBody
+    public List<AdminDTO> getAll(){
+        return  adminService.getAll();
+    }
+
+
+    @PostMapping
+    @ResponseBody
+    public  AdminDTO add(@RequestBody AdminRegisterDTO adminRegisterDTO){
+        return  adminService.add(adminRegisterDTO);
+    }
+
+    @DeleteMapping
+    public  void  delete(@RequestBody  AdminDTO adminDTO){
+        adminService.delete(adminDTO);
+    }
+
+    @PatchMapping
+    public  AdminDTO update(@RequestBody  AdminRegisterDTO adminRegisterDTO){
+        return adminService.update(adminRegisterDTO);
+    }
+
+
     
 }

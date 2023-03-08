@@ -11,8 +11,6 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,7 +18,6 @@ import java.util.Set;
 @Table(name="product"
     ,catalog="ecommerce"
 )
-@AllArgsConstructor
 public class Product  implements java.io.Serializable {
 
 
