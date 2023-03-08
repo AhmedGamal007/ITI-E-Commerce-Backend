@@ -29,20 +29,31 @@ public class ProductServiceImpl implements ProductService {
     }
 
     public Optional<ProductCategoriesDTO> getProduct(Integer id) {
-           
-           Optional<Product> product = productRepo.findById(id);
 
-           if (product.isEmpty()){
+        Optional<Product> product = productRepo.findById(id);
+
+        if (product.isEmpty()) {
             // throwing an exception
-           }
-      
-            return (product.map(productMapper::productToProductDtoId));
+        }
+
+        return (product.map(productMapper::productToProductDtoId));
 
     }
 
-    public void addProduct (ProductCategoriesDTO productDTO){
+    public void addProduct(ProductCategoriesDTO productDTO) {
 
         productRepo.save(productMapper.productDtoToProduct(productDTO));
+    }
+
+    public void updateProduct(ProductCategoriesDTO productDTO) {
+
+        productRepo.save(productMapper.productDtoToProduct(productDTO));
+
+    }
+
+    public void deleteProduct(Integer id) {
+
+        productRepo.deleteById(id);
     }
 
 }
