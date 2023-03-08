@@ -18,6 +18,4 @@ public interface ProductHasCategoriesMapper {
  List<Product> productDtoToProduct (List<ProductCategoriesDTO> product);
 
 
-
-
 }
