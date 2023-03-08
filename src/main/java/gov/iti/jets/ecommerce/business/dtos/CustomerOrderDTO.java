@@ -11,7 +11,9 @@ public class CustomerOrderDTO {
 
     private Integer id;
     private Set<AddressDTO> addresses;
+    private String userName;
     private String email;
+    private double walletLimit;
     private String phone;
 
 }
