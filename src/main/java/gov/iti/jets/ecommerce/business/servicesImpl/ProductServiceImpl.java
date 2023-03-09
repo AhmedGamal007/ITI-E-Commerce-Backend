@@ -2,8 +2,6 @@ package gov.iti.jets.ecommerce.business.servicesImpl;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Service;
 import gov.iti.jets.ecommerce.business.dtos.ProductCategoriesDTO;
 import gov.iti.jets.ecommerce.business.mappers.ProductHasCategoriesMapper;
