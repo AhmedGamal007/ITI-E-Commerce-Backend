@@ -1,53 +1,65 @@
 package gov.iti.jets.ecommerce.business.mappers;
 
-
-import java.util.Set;
+import java.util.List;
+import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import gov.iti.jets.ecommerce.business.dtos.AddressDTO;
+import gov.iti.jets.ecommerce.business.dtos.CustomerOrderDTO;
+import gov.iti.jets.ecommerce.business.dtos.OrderHasProductDTO;
 import gov.iti.jets.ecommerce.business.dtos.OrdersDTO;
 import gov.iti.jets.ecommerce.business.dtos.ProductsOrderDTO;
+import gov.iti.jets.ecommerce.persistence.entities.Address;
+import gov.iti.jets.ecommerce.persistence.entities.Customer;
 import gov.iti.jets.ecommerce.persistence.entities.OrderHasProduct;
 import gov.iti.jets.ecommerce.persistence.entities.Orders;
+import gov.iti.jets.ecommerce.persistence.entities.Product;
 
 @Mapper(componentModel = "spring")
 public interface OrdersMapper {
 
+    AddressDTO addressToAddressDTO(Address address);
 
-     // @Mapping(target = "addressDTO" ,source = "address")
-     // @Mapping(target  = "customerDTO" ,source  = "customer")
-     // OrdersDTO OrdersEntitytoDto(Orders orders);
+    @Mapping(target = "customer", ignore = true)
+    @Mapping(target = "orderses", ignore = true)
+    Address addressDTOToAddress(AddressDTO address);
 
-     // @Mapping(source = "customerDTO" ,target  = "customer")
-     // @Mapping(source = "addressDTO" ,target  = "address")
-     // Orders OrdersDTOtoEntity(OrdersDTO ordersDTO);
+    CustomerOrderDTO customerToCustomerOrderDTO(Customer customer);
 
-     // @Mapping(source = "orderHasProducts" ,target  = "orderHasProducts.product")
-     // Set<ProductsOrderDTO> map(Set<OrderHasProduct> set);
-     
-//     AddressMapper addressMapper = new AddressMapper();
-//     ProductOrderMapper productOrderMapper;
-//     public OrdersDTO maptoDto(Orders orders){
-//         OrdersDTO ordersDTO = new OrdersDTO();
-//         ordersDTO.setId(orders.getId());
-//         ordersDTO.setIsSubmitted(orders.getIsSubmitted());
-//         ordersDTO.setPaymentType(orders.getPaymentType());
-//         ordersDTO.setOrderHasProducts(productOrderMapper.ordersProductToOrderProductDTO(orders.getOrderHasProducts()));
-//         ordersDTO.setTotalPrice(orders.getTotalPrice());
-//         ordersDTO.setAddressDTO(addressMapper.addresstoDTO(orders.getAddress()));
-//         return ordersDTO;
-//    }
+    @Mapping(target = "dob", ignore = true)
+    @Mapping(target = "isMale", ignore = true)
+    @Mapping(target = "orderses", ignore = true)
+    @Mapping(target = "password", ignore = true)
+    Customer customerOrderDTOToCustomer(CustomerOrderDTO customerOrderDTO);
 
-//    public Orders maptoEntity(OrdersDTO ordersDTO){
-//         Orders orders = new Orders();
-//         orders.setId(ordersDTO.getId());
-//         orders.setIsSubmitted(ordersDTO.getIsSubmitted());
-//         orders.setOrderHasProducts(productOrderMapper.orderProductDTOToOrdersProduct(ordersDTO.getOrderHasProducts()));
-//         orders.setPaymentType(ordersDTO.getPaymentType());
-//         orders.setTotalPrice(ordersDTO.getTotalPrice());
-//         orders.setAddress(addressMapper.AdressDTOtoAddress(ordersDTO.getAddressDTO()));
+    ProductsOrderDTO productToProductsOrderDTO(Product product);
 
-//         return orders;
-//    }
+    @Mapping(target = "rate", ignore = true)
+    @Mapping(target = "stock", ignore = true)
+    @Mapping(target = "imagePath", ignore = true)
+    @Mapping(target = "categories", ignore = true)
+    @Mapping(target = "orderHasProducts", ignore = true)
+    Product productsOrderDTOToProduct(ProductsOrderDTO product);
 
+    OrderHasProductDTO orderHasProductToOrderHasProductsDTO(OrderHasProduct orderHasProduct);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "orders", ignore = true)
+    OrderHasProduct OrderHasProductsDTOToorderHasProduct(OrderHasProductDTO orderHasProduct);
+
+    List<OrderHasProductDTO> orderHasProductToOrderHasProductsDTO(List<OrderHasProduct> orderHasProduct);
+
+    List<OrderHasProduct> OrderHasProductsDTOToorderHasProduct(List<OrderHasProductDTO> orderHasProduct);
+
+    @Mapping(target = "addressDTO", source = "address")
+    @Mapping(target = "customerOrderDTO", source = "customer")
+    @Mapping(target = "orderHasProductsDTO", source = "orderHasProducts")
+    OrdersDTO orderToOrderDTO(Orders orders);
+
+    @InheritInverseConfiguration
+    Orders orderDTOToOrder(OrdersDTO orderDto);
+
+    List<OrdersDTO> orderToOrderDTO(List<Orders> orders);
+
+    List<Orders> orderDTOToOrder(List<OrdersDTO> orderDto);
 }
