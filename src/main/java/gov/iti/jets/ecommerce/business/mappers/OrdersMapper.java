@@ -2,12 +2,8 @@ package gov.iti.jets.ecommerce.business.mappers;
 
 
 import java.util.Set;
-
-import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.springframework.data.domain.jaxb.SpringDataJaxb.OrderDto;
-
 import gov.iti.jets.ecommerce.business.dtos.OrdersDTO;
 import gov.iti.jets.ecommerce.business.dtos.ProductsOrderDTO;
 import gov.iti.jets.ecommerce.persistence.entities.OrderHasProduct;
@@ -17,16 +13,16 @@ import gov.iti.jets.ecommerce.persistence.entities.Orders;
 public interface OrdersMapper {
 
 
-     @Mapping(target = "addressDTO" ,source = "address")
-     @Mapping(target  = "customerDTO" ,source  = "customer")
-     OrdersDTO OrdersEntitytoDto(Orders orders);
+     // @Mapping(target = "addressDTO" ,source = "address")
+     // @Mapping(target  = "customerDTO" ,source  = "customer")
+     // OrdersDTO OrdersEntitytoDto(Orders orders);
 
-     @Mapping(source = "customerDTO" ,target  = "customer")
-     @Mapping(source = "addressDTO" ,target  = "address")
-     Orders OrdersDTOtoEntity(OrdersDTO ordersDTO);
+     // @Mapping(source = "customerDTO" ,target  = "customer")
+     // @Mapping(source = "addressDTO" ,target  = "address")
+     // Orders OrdersDTOtoEntity(OrdersDTO ordersDTO);
 
-     @Mapping(source = "orderHasProducts" ,target  = "orderHasProducts.product")
-     Set<ProductsOrderDTO> map(Set<OrderHasProduct> set);
+     // @Mapping(source = "orderHasProducts" ,target  = "orderHasProducts.product")
+     // Set<ProductsOrderDTO> map(Set<OrderHasProduct> set);
      
 //     AddressMapper addressMapper = new AddressMapper();
 //     ProductOrderMapper productOrderMapper;
@@ -52,4 +48,6 @@ public interface OrdersMapper {
 
 //         return orders;
 //    }
+
+
 }

@@ -13,7 +13,7 @@ public interface ProductOrderMapper {
     
     ProductOrderMapper mapper = Mappers.getMapper(ProductOrderMapper.class);
 
-    Set<ProductsOrderDTO> ordersProductToOrderProductDTO (Set<OrderHasProduct> product);
+    // Set<ProductsOrderDTO> ordersProductToOrderProductDTO (Set<OrderHasProduct> product);
    
-    Set<OrderHasProduct> orderProductDTOToOrdersProduct (Set<ProductsOrderDTO> productDTO);
+    // Set<OrderHasProduct> orderProductDTOToOrdersProduct (Set<ProductsOrderDTO> productDTO);
 }
