@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import gov.iti.jets.ecommerce.business.dtos.CategoriesProductDTO;
 import gov.iti.jets.ecommerce.business.services.CategoriesService;
-import io.micrometer.core.ipc.http.HttpSender.Response;
 
 @RestController
 @RequestMapping("category")
@@ -72,26 +71,6 @@ public class CatergoryController
     }
 
 
-    /* @DeleteMapping("/tutorials/{id}")
-  public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
-    try {
-      tutorialRepository.deleteById(id);
-      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    } catch (Exception e) {
-      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-  }
-
-  @DeleteMapping("/tutorials")
-  public ResponseEntity<HttpStatus> deleteAllTutorials() {
-    try {
-      tutorialRepository.deleteAll();
-      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    } catch (Exception e) {
-      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-  } */
   @DeleteMapping("{id}")
   public ResponseEntity<HttpStatus> deleteCategory(@PathVariable int id)
   {

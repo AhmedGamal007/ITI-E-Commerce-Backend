@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import gov.iti.jets.ecommerce.business.dtos.CategoriesDTO;
+
 import gov.iti.jets.ecommerce.business.dtos.ProductCategoriesDTO;
 import gov.iti.jets.ecommerce.business.mappers.ProductHasCategoriesMapper;
 import gov.iti.jets.ecommerce.business.services.ProductService;
