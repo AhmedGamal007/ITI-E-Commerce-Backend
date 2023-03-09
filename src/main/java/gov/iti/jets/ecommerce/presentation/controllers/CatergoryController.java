@@ -21,19 +21,17 @@ import gov.iti.jets.ecommerce.business.services.CategoriesService;
 
 @RestController
 @RequestMapping("category")
-public class CatergoryController 
-{
+public class CatergoryController {
     @Autowired
     private CategoriesService categoriesService;
+
     // get all categories
     @GetMapping
-    public List<CategoriesProductDTO> getAll()
-    {
+    public List<CategoriesProductDTO> getAll() {
         return categoriesService.getAll();
     }
 
-
-    //get category by id
+    // get category by id
     @GetMapping("{id}")
     public ResponseEntity<CategoriesProductDTO> getById(@PathVariable int id) {
         try {
@@ -42,50 +40,41 @@ public class CatergoryController
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    
+
     }
 
     @PostMapping
-    public void addCategory(@RequestBody CategoriesProductDTO category)
-    {
-      
+    public void addCategory(@RequestBody CategoriesProductDTO category) {
+
         try {
             categoriesService.addCategory(category);
         } catch (Exception e) {
-            //make your own custom exception!!!!!!!!!
+            // make your own custom exception!!!!!!!!!
             throw new RuntimeErrorException(null);
         }
-        
 
     }
 
-    @PutMapping("{id}")
-    public void updateCategory(@RequestBody CategoriesProductDTO category,@PathVariable int id)
-    {
-      
-        
-            categoriesService.addCategory(category);
-        
-        
+    @PutMapping()
+    public void updateCategory(@RequestBody CategoriesProductDTO category) {
+
+        categoriesService.addCategory(category);
 
     }
 
-
-  @DeleteMapping("{id}")
-  public ResponseEntity<HttpStatus> deleteCategory(@PathVariable int id)
-  {
-    try {
-        categoriesService.deleteById(id);
-        return new ResponseEntity<HttpStatus>( HttpStatus.NO_CONTENT);
-    } catch (Exception e) {
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    @DeleteMapping("{id}")
+    public ResponseEntity<HttpStatus> deleteCategory(@PathVariable int id) {
+        try {
+            categoriesService.deleteById(id);
+            return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
-  }
 
-  @DeleteMapping
-  public ResponseEntity<HttpStatus> deleteAllCategory()
-    {
-        
+    @DeleteMapping
+    public ResponseEntity<HttpStatus> deleteAllCategory() {
+
         try {
             categoriesService.deleteAll();
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
