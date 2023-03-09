@@ -20,6 +20,4 @@ public interface ProductHasCategoriesMapper {
  ProductWithoutCategriesDTO map(Product product);
  List<ProductWithoutCategriesDTO> productWithoutCategriesToProduct(List<Product> products);
 
-
-
 }
