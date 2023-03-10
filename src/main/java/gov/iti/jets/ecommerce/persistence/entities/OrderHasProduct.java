@@ -14,9 +14,23 @@ import jakarta.persistence.Table;
 @Table(name = "order_has_product", catalog = "ecommerce")
 public class OrderHasProduct implements java.io.Serializable {
 
+
+    @EmbeddedId
+
+    @AttributeOverrides({
+            @AttributeOverride(name = "orderId", column = @Column(name = "order_id", nullable = false)),
+            @AttributeOverride(name = "productId", column = @Column(name = "product_id", nullable = false)) })
     private OrderHasProductId id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", nullable = false, insertable = false, updatable = false)
     private Product product;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id", nullable = false, insertable = false, updatable = false)
     private Orders orders;
+
+    @Column(name = "amount")
     private Integer amount = 0;
 
     public OrderHasProduct() {
@@ -35,11 +49,7 @@ public class OrderHasProduct implements java.io.Serializable {
         this.amount = amount;
     }
 
-    @EmbeddedId
 
-    @AttributeOverrides({
-            @AttributeOverride(name = "orderId", column = @Column(name = "order_id", nullable = false)),
-            @AttributeOverride(name = "productId", column = @Column(name = "product_id", nullable = false)) })
     public OrderHasProductId getId() {
         return this.id;
     }
@@ -48,8 +58,7 @@ public class OrderHasProduct implements java.io.Serializable {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false, insertable = false, updatable = false)
+
     public Product getProduct() {
         return this.product;
     }
@@ -58,8 +67,7 @@ public class OrderHasProduct implements java.io.Serializable {
         this.product = product;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", nullable = false, insertable = false, updatable = false)
+
     public Orders getOrders() {
         return this.orders;
     }
@@ -68,7 +76,6 @@ public class OrderHasProduct implements java.io.Serializable {
         this.orders = orders;
     }
 
-    @Column(name = "amount")
     public Integer getAmount() {
         return this.amount;
     }
