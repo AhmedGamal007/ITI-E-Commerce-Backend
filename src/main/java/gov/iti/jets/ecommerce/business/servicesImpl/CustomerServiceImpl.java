@@ -32,7 +32,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDTO find(String userName, String password) {
-        Customer customer =  customerRepo.findCustomerByUserNameAndPassword(userName , password);
+        Customer customer =  customerRepo.findCustomerByUsernameAndPassword(userName , password);
         if (customer != null){
 
             return  customerMapper.customerToCustomerDto(customer);
