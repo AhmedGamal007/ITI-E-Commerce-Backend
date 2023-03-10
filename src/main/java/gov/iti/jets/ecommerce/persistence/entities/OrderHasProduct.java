@@ -50,6 +50,8 @@ public class OrderHasProduct implements java.io.Serializable {
     }
 
 
+
+
     public OrderHasProductId getId() {
         return this.id;
     }

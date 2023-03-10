@@ -2,8 +2,9 @@ package gov.iti.jets.ecommerce.business.servicesImpl;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.stereotype.Service;
+
+
 import gov.iti.jets.ecommerce.business.dtos.ProductCategoriesDTO;
 import gov.iti.jets.ecommerce.business.mappers.ProductHasCategoriesMapper;
 import gov.iti.jets.ecommerce.business.services.ProductService;
@@ -16,9 +17,10 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepo productRepo;
     private final ProductHasCategoriesMapper productMapper;
 
-    public ProductServiceImpl(ProductRepo productRepo, ProductHasCategoriesMapper productMapper) {
+    public ProductServiceImpl(ProductRepo productRepo, ProductHasCategoriesMapper productMapper ) {
         this.productRepo = productRepo;
         this.productMapper = productMapper;
+    
     }
 
     public List<ProductCategoriesDTO> getAllProducts() {
