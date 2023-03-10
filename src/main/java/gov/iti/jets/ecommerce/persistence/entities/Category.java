@@ -18,9 +18,22 @@ import java.util.Set;
 @Table(name = "category", catalog = "ecommerce", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class Category implements java.io.Serializable {
 
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+
+    @Column(name = "id", unique = true, nullable = false)
     private Integer id;
+
+    @Column(name = "name", unique = true, nullable = false, length = 100)
     private String name;
+
+    @Column(name = "description", length = 255)
     private String description;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "product_has_category", catalog = "ecommerce", joinColumns = {
+            @JoinColumn(name = "category_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+            @JoinColumn(name = "product_id", nullable = false, updatable = false) })
     private Set<Product> products = new HashSet<Product>(0);
 
     public Category() {
@@ -36,10 +49,7 @@ public class Category implements java.io.Serializable {
         this.products = products;
     }
 
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
 
-    @Column(name = "id", unique = true, nullable = false)
     public Integer getId() {
         return this.id;
     }
@@ -48,7 +58,7 @@ public class Category implements java.io.Serializable {
         this.id = id;
     }
 
-    @Column(name = "name", unique = true, nullable = false, length = 100)
+
     public String getName() {
         return this.name;
     }
@@ -57,7 +67,7 @@ public class Category implements java.io.Serializable {
         this.name = name;
     }
 
-    @Column(name = "description", length = 255)
+
     public String getDescription() {
         return this.description;
     }
@@ -66,10 +76,7 @@ public class Category implements java.io.Serializable {
         this.description = description;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "product_has_category", catalog = "ecommerce", joinColumns = {
-            @JoinColumn(name = "category_id", nullable = false, updatable = false) }, inverseJoinColumns = {
-                    @JoinColumn(name = "product_id", nullable = false, updatable = false) })
+
     public Set<Product> getProducts() {
         return this.products;
     }

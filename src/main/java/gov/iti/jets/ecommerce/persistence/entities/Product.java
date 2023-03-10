@@ -21,14 +21,38 @@ import java.util.Set;
 public class Product  implements java.io.Serializable {
 
 
+
+    @Id @GeneratedValue(strategy=IDENTITY)
+
+
+    @Column(name="id", unique=true, nullable=false)
      private Integer id;
+
+    @Column(name="name", nullable=false, length=45)
      private String name;
+
+    @Column(name="description", length=255)
      private String description;
+
+    @Column(name="price", precision=22, scale=0)
      private Double price = 0.0;
+
+    @Column(name="stock")
      private Integer stock = 0;
+
+    @Column(name="image_path", length=255)
      private String imagePath;
+
+    @Column(name="rate", precision=22, scale=0)
      private Double rate = 0.0;
+
+    @ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(name="product_has_category", catalog="ecommerce", joinColumns = {
+            @JoinColumn(name="product_id", nullable=false, updatable=false) }, inverseJoinColumns = {
+            @JoinColumn(name="category_id", nullable=false, updatable=false) })
      private Set<Category> categories = new HashSet<Category>(0);
+
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="product")
      private Set<OrderHasProduct> orderHasProducts = new HashSet<OrderHasProduct>(0);
 
     public Product() {
@@ -49,10 +73,7 @@ public class Product  implements java.io.Serializable {
        this.orderHasProducts = orderHasProducts;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
 
-    
-    @Column(name="id", unique=true, nullable=false)
     public Integer getId() {
         return this.id;
     }
@@ -62,7 +83,7 @@ public class Product  implements java.io.Serializable {
     }
 
     
-    @Column(name="name", nullable=false, length=45)
+
     public String getName() {
         return this.name;
     }
@@ -72,7 +93,7 @@ public class Product  implements java.io.Serializable {
     }
 
     
-    @Column(name="description", length=255)
+
     public String getDescription() {
         return this.description;
     }
@@ -82,7 +103,7 @@ public class Product  implements java.io.Serializable {
     }
 
     
-    @Column(name="price", precision=22, scale=0)
+
     public Double getPrice() {
         return this.price;
     }
@@ -92,7 +113,7 @@ public class Product  implements java.io.Serializable {
     }
 
     
-    @Column(name="stock")
+
     public Integer getStock() {
         return this.stock;
     }
@@ -102,7 +123,7 @@ public class Product  implements java.io.Serializable {
     }
 
     
-    @Column(name="image_path", length=255)
+
     public String getImagePath() {
         return this.imagePath;
     }
@@ -112,7 +133,7 @@ public class Product  implements java.io.Serializable {
     }
 
     
-    @Column(name="rate", precision=22, scale=0)
+
     public Double getRate() {
         return this.rate;
     }
@@ -121,10 +142,7 @@ public class Product  implements java.io.Serializable {
         this.rate = rate;
     }
 
-@ManyToMany(fetch=FetchType.LAZY)
-    @JoinTable(name="product_has_category", catalog="ecommerce", joinColumns = { 
-        @JoinColumn(name="product_id", nullable=false, updatable=false) }, inverseJoinColumns = { 
-        @JoinColumn(name="category_id", nullable=false, updatable=false) })
+
     public Set<Category> getCategories() {
         return this.categories;
     }
@@ -133,7 +151,7 @@ public class Product  implements java.io.Serializable {
         this.categories = categories;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="product")
+
     public Set<OrderHasProduct> getOrderHasProducts() {
         return this.orderHasProducts;
     }

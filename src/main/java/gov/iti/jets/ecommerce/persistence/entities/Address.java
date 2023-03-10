@@ -17,12 +17,28 @@ import java.util.Set;
 @Table(name = "address", catalog = "ecommerce")
 public class Address implements java.io.Serializable {
 
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+
+    @Column(name = "id", unique = true, nullable = false)
     private Integer id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
+
+    @Column(name = "area", length = 150)
     private String area;
+
+    @Column(name = "building_num")
     private Integer buildingNum;
+
+    @Column(name = "floor_num")
     private Integer floorNum;
+    @Column(name = "street", length = 150)
     private String street;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
     private Set<Orders> orderses = new HashSet<Orders>(0);
 
     public Address() {
@@ -42,10 +58,7 @@ public class Address implements java.io.Serializable {
         this.orderses = orderses;
     }
 
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
 
-    @Column(name = "id", unique = true, nullable = false)
     public Integer getId() {
         return this.id;
     }
@@ -54,8 +67,7 @@ public class Address implements java.io.Serializable {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id", nullable = false)
+
     public Customer getCustomer() {
         return this.customer;
     }
@@ -64,7 +76,7 @@ public class Address implements java.io.Serializable {
         this.customer = customer;
     }
 
-    @Column(name = "area", length = 150)
+
     public String getArea() {
         return this.area;
     }
@@ -73,7 +85,7 @@ public class Address implements java.io.Serializable {
         this.area = area;
     }
 
-    @Column(name = "building_num")
+
     public Integer getBuildingNum() {
         return this.buildingNum;
     }
@@ -82,7 +94,7 @@ public class Address implements java.io.Serializable {
         this.buildingNum = buildingNum;
     }
 
-    @Column(name = "floor_num")
+
     public Integer getFloorNum() {
         return this.floorNum;
     }
@@ -91,7 +103,7 @@ public class Address implements java.io.Serializable {
         this.floorNum = floorNum;
     }
 
-    @Column(name = "street", length = 150)
+
     public String getStreet() {
         return this.street;
     }
@@ -100,7 +112,7 @@ public class Address implements java.io.Serializable {
         this.street = street;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
+
     public Set<Orders> getOrderses() {
         return this.orderses;
     }
