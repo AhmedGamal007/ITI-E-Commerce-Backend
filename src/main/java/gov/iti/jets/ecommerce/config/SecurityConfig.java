@@ -32,10 +32,10 @@ public class SecurityConfig {
                 .csrf()
                 .disable() //disable some kind of verification
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/**","/customer/**") //my white list any one can access
+                .requestMatchers("/auth/**","/customer/**","/admin/**","/cart/**","/category/**","/orders/**","/products/**") //my white list any one can access
                 .permitAll()
-                .anyRequest() //any other requests must be auth
-                .authenticated()
+//                .anyRequest() //any other requests must be auth
+//                .authenticated()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS) //let spring create new session for every request

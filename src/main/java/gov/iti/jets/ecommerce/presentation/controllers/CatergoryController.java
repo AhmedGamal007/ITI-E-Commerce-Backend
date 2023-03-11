@@ -21,14 +21,14 @@ import gov.iti.jets.ecommerce.business.dtos.CategoriesProductDTO;
 import gov.iti.jets.ecommerce.business.services.CategoriesService;
 
 @RestController
-@RequestMapping("category")
+@RequestMapping("/category")
 public class CatergoryController {
     @Autowired
     private CategoriesService categoriesService;
 
 
     // get all categories
-    @RolesAllowed("CUSTOMER")
+//    @RolesAllowed("CUSTOMER")
     @GetMapping
     public List<CategoriesProductDTO> getAll() {
         return categoriesService.getAll();

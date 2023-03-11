@@ -25,8 +25,7 @@ public class AdminController {
         return  adminService.find(id);
     }
 
-//  @PreAuthorize("hasRole('CUSTOMER')")
-    @RolesAllowed("ADMIN")
+//    @RolesAllowed("ADMIN")
     @GetMapping("/all")
     @ResponseBody
     public List<AdminDTO> getAll(){
