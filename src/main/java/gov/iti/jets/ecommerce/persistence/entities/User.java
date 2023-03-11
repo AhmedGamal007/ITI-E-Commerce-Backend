@@ -20,7 +20,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Table(name = "user", catalog = "ecommerce", uniqueConstraints = { @UniqueConstraint(columnNames = "email"),
         @UniqueConstraint(columnNames = "user_name") })
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class User implements java.io.Serializable , UserDetails {
+public class User implements java.io.Serializable , UserDetails {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)

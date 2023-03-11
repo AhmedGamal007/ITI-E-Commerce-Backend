@@ -8,7 +8,7 @@ import lombok.*;
 public class CustomerDTO {
 
     private Integer id;
-    private String userName;
+    private String username;
     private Boolean isMale;
     private double walletLimit;
     
