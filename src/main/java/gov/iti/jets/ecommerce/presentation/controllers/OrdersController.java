@@ -41,6 +41,16 @@ public class OrdersController {
         }
     }
 
+
+    @GetMapping("/customer/{id}")
+    public ResponseEntity<List<OrdersDTO>> getCustomerOrderById(@PathVariable Integer id){
+        try {
+            return new ResponseEntity<>(ordersServiceImpl.getCustomerOrders(id),HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PostMapping
     public void addOrder(@RequestBody OrdersDTO ordersDTO){
         ordersServiceImpl.addOrder(ordersDTO);
