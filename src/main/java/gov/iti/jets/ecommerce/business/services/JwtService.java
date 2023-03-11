@@ -1,5 +1,6 @@
 package gov.iti.jets.ecommerce.business.services;
 
+import gov.iti.jets.ecommerce.persistence.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -29,13 +30,14 @@ public class JwtService {
 
     }
 
-    public String generateToken(UserDetails userDetails){
+    public String generateToken(User userDetails){
         return generateToken(new HashMap<>() , userDetails);
     }
-    public String generateToken(Map<String , Object> extraClaims , UserDetails userDetails){
+    public String generateToken(Map<String , Object> extraClaims , User userDetails){
         return Jwts.builder()
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
+                .claim("role",userDetails.getRole())
                 .setIssuedAt(new Date(System.currentTimeMillis())) //means when this Claim was Created
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 *60 *24)) // 24 h + 1000 mls
                 .signWith(SignatureAlgorithm.HS256, getSignInKey())

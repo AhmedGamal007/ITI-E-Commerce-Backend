@@ -4,6 +4,7 @@ import gov.iti.jets.ecommerce.business.dtos.AdminDTO;
 import gov.iti.jets.ecommerce.business.dtos.AdminRegisterDTO;
 import gov.iti.jets.ecommerce.business.services.AdminService;
 
+import jakarta.annotation.security.RolesAllowed;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,9 @@ public class AdminController {
     public AdminDTO get(@PathVariable Integer id){
         return  adminService.find(id);
     }
+
+//  @PreAuthorize("hasRole('CUSTOMER')")
+    @RolesAllowed("ADMIN")
     @GetMapping("/all")
     @ResponseBody
     public List<AdminDTO> getAll(){
