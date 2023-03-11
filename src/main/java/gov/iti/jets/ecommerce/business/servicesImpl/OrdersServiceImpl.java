@@ -47,4 +47,9 @@ public class OrdersServiceImpl implements OrdersService {
     public void updateOrder(OrdersDTO ordersDTO) {
         ordersRepo.save(ordersMapper.orderDTOToOrder(ordersDTO));
     }
+
+    @Override
+    public List<OrdersDTO> getCustomerOrders(Integer id) {
+       return ordersMapper.orderToOrderDTO(ordersRepo.getCustomerOrders(id));
+    }
 }
