@@ -12,4 +12,5 @@ public interface OrdersService  {
     public void removeOrder(Integer id);
     public OrdersDTO getCart(Integer id);
     public void updateOrder(OrdersDTO ordersDTO);
+    public List<OrdersDTO> getCustomerOrders(Integer id);
 }
