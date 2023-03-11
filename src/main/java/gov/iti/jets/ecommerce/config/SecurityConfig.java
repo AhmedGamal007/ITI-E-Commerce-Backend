@@ -32,7 +32,7 @@ public class SecurityConfig {
                 .csrf()
                 .disable() //disable some kind of verification
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/**","/customer/**","/admin/**","/cart/**","/category/**","/orders/**","/products/**") //my white list any one can access
+                .requestMatchers("/auth/**","/customer/**","/admin/**","/cart/**","/category/**","/order/**","/products/**") //my white list any one can access
                 .permitAll()
 //                .anyRequest() //any other requests must be auth
 //                .authenticated()
