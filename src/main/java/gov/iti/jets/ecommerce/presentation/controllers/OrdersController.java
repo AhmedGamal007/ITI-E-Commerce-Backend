@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import gov.iti.jets.ecommerce.business.dtos.OrdersDTO;
+import gov.iti.jets.ecommerce.business.dtos.ResponseDTO;
 import gov.iti.jets.ecommerce.business.servicesImpl.OrdersServiceImpl;
 
 @RestController
@@ -32,12 +33,12 @@ public class OrdersController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrdersDTO> getOrderById(@PathVariable Integer id){
+    public ResponseDTO getOrderById(@PathVariable Integer id){
         try {
-            return new ResponseEntity<>(ordersServiceImpl.getOrderById(id),HttpStatus.OK);
+            return new ResponseDTO ("msm","ksks",ordersServiceImpl.getOrderById(id));
 
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new  ResponseDTO("yyey","asa", null);
         }
     }
 
