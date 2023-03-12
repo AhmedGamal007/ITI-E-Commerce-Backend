@@ -1,8 +1,5 @@
 package gov.iti.jets.ecommerce.presentation.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,30 +25,39 @@ public class ProductsController {
     public ResponseDTO getAllProducts() {
 
         return new ResponseDTO("All products", "success", productService.getAllProducts());
-      
+
     }
 
     // Get Product By ID
     @GetMapping("/products/{id}")
-    public Optional<ProductCategoriesDTO> getProduct(@PathVariable Integer id) {
-
-        return productService.getProduct(id);
+    public ResponseDTO getProduct(@PathVariable Integer id) {
+        try {
+            return new ResponseDTO("product", "success", productService.getProduct(id));
+        } catch (Exception ex) {
+            return new ResponseDTO("product not found", "failed", null);
+        }
     }
 
     // Add Products
     // Authorization required ****Pending****
     @PostMapping("/products")
-    public void addProduct(@RequestBody ProductCategoriesDTO productDTO) {
-
-        productService.addProduct(productDTO);
+    public ResponseDTO addProduct(@RequestBody ProductCategoriesDTO productDTO) {
+        try {
+            return new ResponseDTO("Update Product Successfully", "success", null);
+        } catch (Exception ex) {
+            return new ResponseDTO("Update Product Failed", "failed", null);
+        }
     }
 
     // update product
     // Authorization required ****Pending****
     @PutMapping("/products")
-    public void updateProduct(@RequestBody ProductCategoriesDTO productDTO) {
-
-        productService.addProduct(productDTO);
+    public ResponseDTO updateProduct(@RequestBody ProductCategoriesDTO productDTO) {
+        try {
+            return new ResponseDTO("Update Product Successfully", "success", null);
+        } catch (Exception ex) {
+            return new ResponseDTO("Update Product Failed", "failed", null);
+        }
     }
 
     // delete product by id
