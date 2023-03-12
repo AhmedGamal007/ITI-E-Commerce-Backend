@@ -1,5 +1,6 @@
 package gov.iti.jets.ecommerce.presentation.controllers;
 
+import jakarta.annotation.security.RolesAllowed;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,9 @@ public class CartController {
         this.ordersService = ordersService;
     }
 
+
+//    with customer id
+    @RolesAllowed("CUSTOMER")
     @GetMapping("/{id}")
     public OrdersDTO getCart(@PathVariable Integer id) {
         return ordersService.getCart(id);

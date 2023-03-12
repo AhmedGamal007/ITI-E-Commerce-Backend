@@ -2,6 +2,7 @@ package gov.iti.jets.ecommerce.presentation.controllers;
 
 import java.util.List;
 
+import jakarta.annotation.security.RolesAllowed;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,7 +19,7 @@ import gov.iti.jets.ecommerce.business.dtos.ResponseDTO;
 import gov.iti.jets.ecommerce.business.servicesImpl.OrdersServiceImpl;
 
 @RestController
-@RequestMapping("order")
+@RequestMapping("/order")
 public class OrdersController {
 
     private final OrdersServiceImpl ordersServiceImpl;
@@ -27,6 +28,7 @@ public class OrdersController {
         this.ordersServiceImpl = ordersServiceImpl;
     }
 
+    @RolesAllowed("ADMIN")
     @GetMapping("/orders")
     List<OrdersDTO> getAllOrders() {
         return ordersServiceImpl.getAllOrders();
@@ -38,6 +40,8 @@ public class OrdersController {
         return new ResponseDTO("order", true, 200, ordersServiceImpl.getOrderById(id));
     }
 
+
+//history
     @GetMapping("/customer/{id}")
     public ResponseEntity<List<OrdersDTO>> getCustomerOrderById(@PathVariable Integer id) {
         try {
@@ -53,7 +57,7 @@ public class OrdersController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteOrder(Integer id) {
+    public void deleteOrder(@PathVariable Integer id) {
         ordersServiceImpl.removeOrder(id);
     }
 

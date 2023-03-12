@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
+@RolesAllowed("ADMIN")
 @AllArgsConstructor
 @RestController
 @RequestMapping("/admin")
@@ -25,7 +26,7 @@ public class AdminController {
         return  adminService.find(id);
     }
 
-    @RolesAllowed("ADMIN")
+//    @RolesAllowed("ADMIN")
     @GetMapping("/all")
     @ResponseBody
     public List<AdminDTO> getAll(){

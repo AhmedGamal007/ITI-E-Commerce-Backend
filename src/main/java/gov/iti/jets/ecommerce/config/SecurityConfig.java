@@ -25,14 +25,21 @@ public class SecurityConfig {
     private final JwtAuthFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
 
+    private static final String[] WHITELIST = {
+            "/auth/**",
+            "/category/**",
+            "/products/**"
+    };
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf()
-                .disable() //disable some kind of verification
+                .csrf().disable()
+                .headers().frameOptions().disable().and()
+                .cors().and() //disable some kind of verification
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/**","/customer/**") //my white list any one can access
+                .shouldFilterAllDispatcherTypes(false)
+                .requestMatchers(WHITELIST) //my white list any one can access
                 .permitAll()
                 .anyRequest() //any other requests must be auth
                 .authenticated()

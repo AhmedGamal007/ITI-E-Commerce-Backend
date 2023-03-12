@@ -1,11 +1,10 @@
 package gov.iti.jets.ecommerce.presentation.controllers;
 
-import java.util.List;
 
 import javax.management.RuntimeErrorException;
 
 import jakarta.annotation.security.RolesAllowed;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,30 +20,30 @@ import gov.iti.jets.ecommerce.business.dtos.CategoriesProductDTO;
 import gov.iti.jets.ecommerce.business.dtos.ResponseDTO;
 import gov.iti.jets.ecommerce.business.services.CategoriesService;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/category")
 public class CatergoryController {
-    @Autowired
-    private CategoriesService categoriesService;
+    final private CategoriesService categoriesService;
 
 
     // get all categories
-    @RolesAllowed("CUSTOMER")
     @GetMapping
     public ResponseDTO getAll() {
        
-        return new ResponseDTO("All products", true, 200,  categoriesService.getAll());
+        return new ResponseDTO("All categories", true, 200,  categoriesService.getAll());
        
     }
 
     // get category by id
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseDTO getById(@PathVariable int id) {
        
-        return new ResponseDTO("All products", true, 200, categoriesService.getById(id));
+        return new ResponseDTO("All categories", true, 200, categoriesService.getById(id));
         
     }
 
+    @RolesAllowed("ADMIN")
     @PostMapping
     public void addCategory(@RequestBody CategoriesProductDTO category) {
 
@@ -57,6 +56,7 @@ public class CatergoryController {
 
     }
 
+    @RolesAllowed("ADMIN")
     @PutMapping()
     public void updateCategory(@RequestBody CategoriesProductDTO category) {
 
@@ -64,7 +64,8 @@ public class CatergoryController {
 
     }
 
-    @DeleteMapping("{id}")
+    @RolesAllowed("ADMIN")
+    @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteCategory(@PathVariable int id) {
         try {
             categoriesService.deleteById(id);
@@ -74,6 +75,7 @@ public class CatergoryController {
         }
     }
 
+    @RolesAllowed("ADMIN")
     @DeleteMapping
     public ResponseEntity<HttpStatus> deleteAllCategory() {
 

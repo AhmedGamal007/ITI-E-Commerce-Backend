@@ -14,5 +14,4 @@ public class AuthResponse {
     private boolean status;
 
     private Object object;
-//    private String token;
 }

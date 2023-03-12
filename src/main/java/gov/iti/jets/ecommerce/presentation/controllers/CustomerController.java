@@ -2,6 +2,7 @@ package gov.iti.jets.ecommerce.presentation.controllers;
 
 import gov.iti.jets.ecommerce.business.services.CustomerService;
 import gov.iti.jets.ecommerce.business.dtos.CustomerDTO;
+import jakarta.annotation.security.RolesAllowed;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -19,16 +20,18 @@ public class CustomerController {
     return customerService.find(id);
     }
 
+
+    @RolesAllowed("ADMIN")
     @ResponseBody
     @GetMapping("/all")
     public List<CustomerDTO> getAllCustomers(){
         return customerService.getAll();
     }
 
-   @PostMapping
-   public CustomerDTO addCustomer(@RequestBody CustomerDTO customerDTO){
-        return customerService.add(customerDTO);
-   }
+//   @PostMapping
+//   public CustomerDTO addCustomer(@RequestBody CustomerDTO customerDTO){
+//        return customerService.add(customerDTO);
+//   }
     @DeleteMapping
     public void delete(@RequestBody CustomerDTO customerDTO){
         customerService.delete(customerDTO);
