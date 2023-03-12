@@ -32,15 +32,17 @@ public class CatergoryController {
 //    @RolesAllowed("CUSTOMER")
     @GetMapping
     public ResponseDTO getAll() {
-        return new ResponseDTO("get all products","succes",categoriesService.getAll()) ;
+       
+        return new ResponseDTO("All products", true, 200,  categoriesService.getAll());
+       
     }
 
     // get category by id
     @GetMapping("{id}")
     public ResponseDTO getById(@PathVariable int id) {
-    
-        return new ResponseDTO("get all products","succes",categoriesService.getById(id)) ;
-
+       
+        return new ResponseDTO("All products", true, 200, categoriesService.getById(id));
+        
     }
 
     @PostMapping
