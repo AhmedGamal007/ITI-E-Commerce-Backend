@@ -9,6 +9,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ResponseDTO {
     String message;
-    String status;
+    boolean status;
+    Integer code;
     Object data;
+    
+    public ResponseDTO(String message, boolean status, Integer code) {
+        this.message = message;
+        this.status = status;
+        this.code = code;
+    }
+
+    
 }

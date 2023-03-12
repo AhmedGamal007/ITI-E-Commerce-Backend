@@ -6,12 +6,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import gov.iti.jets.ecommerce.business.dtos.ProductCategoriesDTO;
 import gov.iti.jets.ecommerce.business.dtos.ResponseDTO;
 import gov.iti.jets.ecommerce.business.services.ProductService;
 
 @RestController
+@RequestMapping("/products")
 public class ProductsController {
 
     private final ProductService productService;
@@ -21,51 +23,45 @@ public class ProductsController {
     }
 
     // Get All Products
-    @GetMapping("/products")
+    @GetMapping
     public ResponseDTO getAllProducts() {
 
-        return new ResponseDTO("All products", "success", productService.getAllProducts());
+        return new ResponseDTO("All products", true, 200, productService.getAllProducts());
 
     }
 
     // Get Product By ID
-    @GetMapping("/products/{id}")
+    @GetMapping("/{id}")
     public ResponseDTO getProduct(@PathVariable Integer id) {
-        try {
-            return new ResponseDTO("product", "success", productService.getProduct(id));
-        } catch (Exception ex) {
-            return new ResponseDTO("product not found", "failed", null);
-        }
+
+        return new ResponseDTO("product", true, 200, productService.getProduct(id));
     }
 
     // Add Products
     // Authorization required ****Pending****
-    @PostMapping("/products")
+    @PostMapping
     public ResponseDTO addProduct(@RequestBody ProductCategoriesDTO productDTO) {
-        try {
-            return new ResponseDTO("Update Product Successfully", "success", null);
-        } catch (Exception ex) {
-            return new ResponseDTO("Update Product Failed", "failed", null);
-        }
+
+        this.productService.addProduct(productDTO);
+        return new ResponseDTO("Update Product Successfully", true, 200);
     }
 
     // update product
     // Authorization required ****Pending****
-    @PutMapping("/products")
+    @PutMapping
     public ResponseDTO updateProduct(@RequestBody ProductCategoriesDTO productDTO) {
-        try {
-            return new ResponseDTO("Update Product Successfully", "success", null);
-        } catch (Exception ex) {
-            return new ResponseDTO("Update Product Failed", "failed", null);
-        }
+
+        this.productService.updateProduct(productDTO);
+        return new ResponseDTO("Update Product Successfully", true, null);
     }
 
     // delete product by id
     // Authorization required ****Pending****
-    @DeleteMapping("/products/{id}")
-    public void deleteProduct(@PathVariable Integer id) {
+    @DeleteMapping
+    public ResponseDTO deleteProduct(@PathVariable Integer id) {
 
-        // productService.deleteProduct(id);
+        this.productService.deleteProduct(id);
+        return new ResponseDTO("Delete Product Successfully", true, null);
     }
 
 }

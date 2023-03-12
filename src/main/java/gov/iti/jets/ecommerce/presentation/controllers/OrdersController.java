@@ -20,7 +20,7 @@ import gov.iti.jets.ecommerce.business.servicesImpl.OrdersServiceImpl;
 @RestController
 @RequestMapping("order")
 public class OrdersController {
-    
+
     private final OrdersServiceImpl ordersServiceImpl;
 
     public OrdersController(OrdersServiceImpl ordersServiceImpl) {
@@ -28,32 +28,27 @@ public class OrdersController {
     }
 
     @GetMapping("/orders")
-    List<OrdersDTO> getAllOrders(){
+    List<OrdersDTO> getAllOrders() {
         return ordersServiceImpl.getAllOrders();
     }
 
     @GetMapping("/{id}")
-    public ResponseDTO getOrderById(@PathVariable Integer id){
-        try {
-            return new ResponseDTO ("msm","ksks",ordersServiceImpl.getOrderById(id));
+    public ResponseDTO getOrderById(@PathVariable Integer id) {
 
-        } catch (Exception e) {
-            return new  ResponseDTO("yyey","asa", null);
-        }
+        return new ResponseDTO("order", true, 200, ordersServiceImpl.getOrderById(id));
     }
 
-
     @GetMapping("/customer/{id}")
-    public ResponseEntity<List<OrdersDTO>> getCustomerOrderById(@PathVariable Integer id){
+    public ResponseEntity<List<OrdersDTO>> getCustomerOrderById(@PathVariable Integer id) {
         try {
-            return new ResponseEntity<>(ordersServiceImpl.getCustomerOrders(id),HttpStatus.OK);
+            return new ResponseEntity<>(ordersServiceImpl.getCustomerOrders(id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping
-    public void addOrder(@RequestBody OrdersDTO ordersDTO){
+    public void addOrder(@RequestBody OrdersDTO ordersDTO) {
         ordersServiceImpl.addOrder(ordersDTO);
     }
 
