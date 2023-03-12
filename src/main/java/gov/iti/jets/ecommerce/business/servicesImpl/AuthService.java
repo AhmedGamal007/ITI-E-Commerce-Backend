@@ -1,4 +1,4 @@
-package gov.iti.jets.ecommerce.business.services;
+package gov.iti.jets.ecommerce.business.servicesImpl;
 
 import gov.iti.jets.ecommerce.business.dtos.*;
 import gov.iti.jets.ecommerce.business.mappers.AdminMapper;
@@ -99,7 +99,7 @@ public class AuthService {
          }else {
              var jwtToken = jwtService.generateToken(user);
              CustomerResponse customerResponse = customerMapper.CustomerToCustomerResponse(
-                     customerRepo.findCustomerByUsername(request.getUserName()).get()
+                     customerRepo.findCustomerByUsername(request.getUserName()).orElseThrow()
              );
              customerResponse.setToken(jwtToken);
              object = customerResponse;

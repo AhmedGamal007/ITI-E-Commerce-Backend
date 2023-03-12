@@ -1,6 +1,6 @@
 package gov.iti.jets.ecommerce.config;
 
-import gov.iti.jets.ecommerce.business.services.JwtService;
+import gov.iti.jets.ecommerce.business.servicesImpl.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
