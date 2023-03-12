@@ -1,8 +1,5 @@
 package gov.iti.jets.ecommerce.presentation.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,9 +30,9 @@ public class ProductsController {
 
     // Get Product By ID
     @GetMapping("/products/{id}")
-    public Optional<ProductCategoriesDTO> getProduct(@PathVariable Integer id) {
+    public ResponseDTO getProduct(@PathVariable Integer id) {
 
-        return productService.getProduct(id);
+        return new ResponseDTO("get Product by id","succes",productService.getProduct(id));
     }
 
     // Add Products
@@ -61,5 +58,7 @@ public class ProductsController {
 
         // productService.deleteProduct(id);
     }
+
+
 
 }
