@@ -12,7 +12,7 @@ import gov.iti.jets.ecommerce.business.dtos.CategoriesProductDTO;
 import gov.iti.jets.ecommerce.business.mappers.CategoriesMapper;
 import gov.iti.jets.ecommerce.business.services.CategoriesService;
 import gov.iti.jets.ecommerce.persistence.entities.Category;
-import gov.iti.jets.ecommerce.persistence.exceptions.ResourceNotFoundException;
+import gov.iti.jets.ecommerce.exceptions.ResourceNotFoundException;
 import gov.iti.jets.ecommerce.persistence.repositories.CategoriesRepo;
 
 

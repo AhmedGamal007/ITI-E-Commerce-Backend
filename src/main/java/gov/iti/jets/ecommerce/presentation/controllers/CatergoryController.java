@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import gov.iti.jets.ecommerce.business.dtos.CategoriesProductDTO;
+import gov.iti.jets.ecommerce.business.dtos.ResponseDTO;
 import gov.iti.jets.ecommerce.business.services.CategoriesService;
 
 @RestController
@@ -24,23 +25,24 @@ import gov.iti.jets.ecommerce.business.services.CategoriesService;
 public class CatergoryController {
     @Autowired
     private CategoriesService categoriesService;
-
-    // get all categories
+    @Autowired
+    private ResponseDTO responseDTO;
+    
     @GetMapping
-    public List<CategoriesProductDTO> getAll() {
-        return categoriesService.getAll();
+    public ResponseDTO getAll() {
+        responseDTO.setMessage("all categories");
+        responseDTO.setStatus("ok");
+        responseDTO.setData(categoriesService.getAll());
+        return responseDTO;
     }
 
     // get category by id
     @GetMapping("{id}")
     public ResponseEntity<CategoriesProductDTO> getById(@PathVariable int id) {
-        try {
+        
             // return categoriesService.getById(id);
             return new ResponseEntity<>(categoriesService.getById(id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
+        
     }
 
     @PostMapping
@@ -55,7 +57,7 @@ public class CatergoryController {
 
     }
 
-    @PutMapping()
+    @PutMapping
     public void updateCategory(@RequestBody CategoriesProductDTO category) {
 
         categoriesService.addCategory(category);
