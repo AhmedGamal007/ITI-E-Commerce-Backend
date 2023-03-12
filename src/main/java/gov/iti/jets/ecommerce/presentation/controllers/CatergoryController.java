@@ -29,7 +29,7 @@ public class CatergoryController {
 
 
     // get all categories
-//    @RolesAllowed("CUSTOMER")
+    @RolesAllowed("CUSTOMER")
     @GetMapping
     public ResponseDTO getAll() {
        

@@ -25,7 +25,7 @@ public class AdminController {
         return  adminService.find(id);
     }
 
-//    @RolesAllowed("ADMIN")
+    @RolesAllowed("ADMIN")
     @GetMapping("/all")
     @ResponseBody
     public List<AdminDTO> getAll(){
