@@ -20,7 +20,7 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public List<OrdersDTO> getAllOrders() {
-        return ordersMapper.orderToOrderDTO(ordersRepo.findAll());
+        return ordersMapper.orderToOrderDTO(ordersRepo.getAllOrders());
     }
 
     @Override
