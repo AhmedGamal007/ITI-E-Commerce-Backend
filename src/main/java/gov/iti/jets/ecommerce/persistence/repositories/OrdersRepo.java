@@ -15,4 +15,7 @@ public interface OrdersRepo extends JpaRepository<Orders , Integer> {
 
     @Query(value = "select * from order where cust_id = ? and is_submitted = true" ,nativeQuery=true)
     public List<Orders> getCustomerOrders(Integer id);
+
+    @Query(value ="select * from orders where is_submitted =true",nativeQuery = true)
+    public List<Orders>getAllOrders();
 }

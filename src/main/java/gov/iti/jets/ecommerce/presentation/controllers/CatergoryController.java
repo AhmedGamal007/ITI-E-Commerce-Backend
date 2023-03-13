@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.management.RuntimeErrorException;
 
-import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,38 +25,31 @@ import gov.iti.jets.ecommerce.business.services.CategoriesService;
 public class CatergoryController {
     @Autowired
     private CategoriesService categoriesService;
+    @Autowired
+    private ResponseDTO responseDTO;
 
-
-    // get all categories
-//    @RolesAllowed("CUSTOMER")
     @GetMapping
     public ResponseDTO getAll() {
-       
-        return new ResponseDTO("All products", true, 200,  categoriesService.getAll());
-       
+        return new ResponseDTO("all categories", true, 200, categoriesService.getAll());
     }
 
     // get category by id
     @GetMapping("{id}")
     public ResponseDTO getById(@PathVariable int id) {
-       
-        return new ResponseDTO("All products", true, 200, categoriesService.getById(id));
-        
+
+        // return categoriesService.getById(id);
+        return new ResponseDTO("categories by id", true, 200, categoriesService.getById(id));
+
     }
 
     @PostMapping
     public void addCategory(@RequestBody CategoriesProductDTO category) {
 
-        try {
-            categoriesService.addCategory(category);
-        } catch (Exception e) {
-            // make your own custom exception!!!!!!!!!
-            throw new RuntimeErrorException(null);
-        }
+        categoriesService.addCategory(category);
 
     }
 
-    @PutMapping()
+    @PutMapping
     public void updateCategory(@RequestBody CategoriesProductDTO category) {
 
         categoriesService.addCategory(category);

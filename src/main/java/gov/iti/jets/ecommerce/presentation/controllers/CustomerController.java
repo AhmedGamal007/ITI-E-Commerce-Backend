@@ -1,5 +1,6 @@
 package gov.iti.jets.ecommerce.presentation.controllers;
 
+import gov.iti.jets.ecommerce.business.dtos.ResponseDTO;
 import gov.iti.jets.ecommerce.business.services.CustomerService;
 import gov.iti.jets.ecommerce.business.dtos.CustomerDTO;
 import lombok.AllArgsConstructor;
@@ -15,26 +16,47 @@ public class CustomerController {
 
     @ResponseBody
     @GetMapping("/{id}")
-    public CustomerDTO getProfile(@PathVariable Integer id){
-    return customerService.find(id);
+    public ResponseDTO getProfile(@PathVariable Integer id){
+    return new ResponseDTO(
+            "Get Customer Successfully",
+            true,
+            200,
+            customerService.find(id)
+    ) ;
     }
 
     @ResponseBody
     @GetMapping("/all")
-    public List<CustomerDTO> getAllCustomers(){
-        return customerService.getAll();
+    public ResponseDTO getAllCustomers(){
+        return new ResponseDTO(
+                "Get All Customer Successfully",
+                true,
+                200,
+                customerService.getAll()
+        ) ;
     }
 
    @PostMapping
-   public CustomerDTO addCustomer(@RequestBody CustomerDTO customerDTO){
-        return customerService.add(customerDTO);
+   public ResponseDTO addCustomer(@RequestBody CustomerDTO customerDTO){
+       return new ResponseDTO(
+               "Add Customer Successfully",
+               true,
+               200,
+               customerService.add(customerDTO)
+       ) ;
+
    }
     @DeleteMapping
     public void delete(@RequestBody CustomerDTO customerDTO){
         customerService.delete(customerDTO);
     }
     @PutMapping
-    public CustomerDTO update(@RequestBody CustomerDTO customerDTO){
-        return customerService.update(customerDTO);
+    public ResponseDTO update(@RequestBody CustomerDTO customerDTO){
+        return new ResponseDTO(
+                "Add Customer Successfully",
+                true,
+                200,
+                customerService.update(customerDTO)
+        ) ;
     }
 }
