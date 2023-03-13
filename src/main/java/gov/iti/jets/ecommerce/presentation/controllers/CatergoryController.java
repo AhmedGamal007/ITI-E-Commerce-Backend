@@ -1,6 +1,8 @@
 package gov.iti.jets.ecommerce.presentation.controllers;
 
 
+import java.util.List;
+
 import javax.management.RuntimeErrorException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,20 +30,20 @@ public class CatergoryController {
     private ResponseDTO responseDTO;
     
     @GetMapping
-    public ResponseDTO getAll() {
-        responseDTO.setMessage("all categories");
-        responseDTO.setStatus("ok");
-        responseDTO.setData(categoriesService.getAll());
-        return responseDTO;
+    public List<CategoriesProductDTO> getAll() {
+        return categoriesService.getAll();
     }
 
     // get category by id
     @GetMapping("{id}")
     public ResponseEntity<CategoriesProductDTO> getById(@PathVariable int id) {
-        
+        try {
             // return categoriesService.getById(id);
             return new ResponseEntity<>(categoriesService.getById(id), HttpStatus.OK);
-        
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @PostMapping
