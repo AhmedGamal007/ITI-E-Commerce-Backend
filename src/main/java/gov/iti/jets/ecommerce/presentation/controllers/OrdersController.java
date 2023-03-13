@@ -28,8 +28,8 @@ public class OrdersController {
     }
 
     @GetMapping("/orders")
-    List<OrdersDTO> getAllOrders() {
-        return ordersServiceImpl.getAllOrders();
+    public ResponseDTO getAllOrders() {
+        return new ResponseDTO("ddf", true, 200, ordersServiceImpl.getAllOrders());
     }
 
     @GetMapping("/{id}")
@@ -48,8 +48,8 @@ public class OrdersController {
     }
 
     @PostMapping
-    public void addOrder(@RequestBody OrdersDTO ordersDTO) {
-        ordersServiceImpl.addOrder(ordersDTO);
+    public ResponseDTO addOrder(@RequestBody OrdersDTO ordersDTO) {
+        return new ResponseDTO("msm", true, 200, ordersServiceImpl.addOrder(ordersDTO));
     }
 
     @DeleteMapping("/{id}")

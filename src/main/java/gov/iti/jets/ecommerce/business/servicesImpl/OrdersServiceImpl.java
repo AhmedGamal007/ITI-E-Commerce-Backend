@@ -29,8 +29,8 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public void addOrder(OrdersDTO ordersDTO) {
-        ordersRepo.save(ordersMapper.orderDTOToOrder(ordersDTO));
+    public OrdersDTO addOrder(OrdersDTO ordersDTO) {
+        return ordersMapper.orderToOrderDTO(ordersRepo.save(ordersMapper.orderDTOToOrder(ordersDTO)));
     }
 
     @Override
