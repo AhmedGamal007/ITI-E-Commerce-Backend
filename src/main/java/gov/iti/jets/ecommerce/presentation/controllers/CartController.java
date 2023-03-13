@@ -4,8 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import gov.iti.jets.ecommerce.business.dtos.OrdersDTO;
+import gov.iti.jets.ecommerce.business.dtos.ResponseDTO;
 import gov.iti.jets.ecommerce.business.services.OrdersService;
 
 
@@ -20,7 +19,7 @@ public class CartController {
     }
 
     @GetMapping("/{id}")
-    public OrdersDTO getCart(@PathVariable Integer id) {
-        return ordersService.getCart(id);
+    public ResponseDTO getCart(@PathVariable Integer id) {
+        return  new ResponseDTO("succ", true, 200, ordersService.getCart(id));
     }
 }
