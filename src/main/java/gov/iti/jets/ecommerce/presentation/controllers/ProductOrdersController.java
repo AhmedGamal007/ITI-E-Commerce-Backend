@@ -22,7 +22,7 @@ public class ProductOrdersController {
     }
 
     @GetMapping("/{productId}/{orderId}")
-    public ResponseDTO chickProductAddedToCart(@PathVariable Integer productId, Integer orderId) {
+    public ResponseDTO chickProductAddedToCart(@PathVariable Integer productId, @PathVariable Integer orderId) {
         return new ResponseDTO("succsess", true, 200, this.productOrderService.chickProductAddedToCart(productId, orderId));
     }
 
