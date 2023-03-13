@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import gov.iti.jets.ecommerce.business.dtos.CategoriesProductDTO;
+import gov.iti.jets.ecommerce.business.dtos.ResponseDTO;
 import gov.iti.jets.ecommerce.business.services.CategoriesService;
 
 @RestController
@@ -30,20 +31,18 @@ public class CatergoryController {
     // get all categories
 //    @RolesAllowed("CUSTOMER")
     @GetMapping
-    public List<CategoriesProductDTO> getAll() {
-        return categoriesService.getAll();
+    public ResponseDTO getAll() {
+       
+        return new ResponseDTO("All products", true, 200,  categoriesService.getAll());
+       
     }
 
     // get category by id
     @GetMapping("{id}")
-    public ResponseEntity<CategoriesProductDTO> getById(@PathVariable int id) {
-        try {
-            // return categoriesService.getById(id);
-            return new ResponseEntity<>(categoriesService.getById(id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
+    public ResponseDTO getById(@PathVariable int id) {
+       
+        return new ResponseDTO("All products", true, 200, categoriesService.getById(id));
+        
     }
 
     @PostMapping
