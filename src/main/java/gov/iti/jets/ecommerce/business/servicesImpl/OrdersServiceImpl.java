@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import gov.iti.jets.ecommerce.business.dtos.OrdersDTO;
 import gov.iti.jets.ecommerce.business.mappers.OrdersMapper;
 import gov.iti.jets.ecommerce.business.services.OrdersService;
-import gov.iti.jets.ecommerce.persistence.exceptions.ResourceNotFoundException;
+import gov.iti.jets.ecommerce.exceptions.ResourceNotFoundException;
 import gov.iti.jets.ecommerce.persistence.repositories.OrdersRepo;
 
 @Service

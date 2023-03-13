@@ -1,12 +1,13 @@
 package gov.iti.jets.ecommerce.business.dtos;
 
-import lombok.Data;
 import org.springframework.http.HttpStatus;
+
+import lombok.Data;
 
 @Data
 public class ErrorResponse {
     private int code;
-    private HttpStatus status;
+    private Boolean status;
     private String message;
-    private String location;
+    private HttpStatus httpstatus;
 }
