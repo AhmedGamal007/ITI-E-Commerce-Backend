@@ -1,6 +1,5 @@
 package gov.iti.jets.ecommerce.presentation.controllers;
 
-
 import java.util.List;
 
 import javax.management.RuntimeErrorException;
@@ -28,33 +27,25 @@ public class CatergoryController {
     private CategoriesService categoriesService;
     @Autowired
     private ResponseDTO responseDTO;
-    
+
     @GetMapping
-    public List<CategoriesProductDTO> getAll() {
-        return categoriesService.getAll();
+    public ResponseDTO getAll() {
+        return new ResponseDTO("all categories", true, 200, categoriesService.getAll());
     }
 
     // get category by id
     @GetMapping("{id}")
-    public ResponseEntity<CategoriesProductDTO> getById(@PathVariable int id) {
-        try {
-            // return categoriesService.getById(id);
-            return new ResponseEntity<>(categoriesService.getById(id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseDTO getById(@PathVariable int id) {
+
+        // return categoriesService.getById(id);
+        return new ResponseDTO("categories by id", true, 200, categoriesService.getById(id));
 
     }
 
     @PostMapping
     public void addCategory(@RequestBody CategoriesProductDTO category) {
 
-        try {
-            categoriesService.addCategory(category);
-        } catch (Exception e) {
-            // make your own custom exception!!!!!!!!!
-            throw new RuntimeErrorException(null);
-        }
+        categoriesService.addCategory(category);
 
     }
 
