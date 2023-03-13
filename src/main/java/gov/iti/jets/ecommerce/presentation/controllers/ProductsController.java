@@ -1,5 +1,11 @@
 package gov.iti.jets.ecommerce.presentation.controllers;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -7,7 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
 import gov.iti.jets.ecommerce.business.dtos.ProductCategoriesDTO;
 import gov.iti.jets.ecommerce.business.dtos.ResponseDTO;
 import gov.iti.jets.ecommerce.business.services.ProductService;
@@ -64,6 +73,14 @@ public class ProductsController {
         return new ResponseDTO("Delete Product Successfully", true, null);
     }
 
+    @PostMapping("/upload")
+    public void uploadImage (@RequestParam("file") MultipartFile file ) throws Exception {
+     
+       String path_directory="D:\\Final Front\\-Frontend-ecommerce\\src\\assets\\images";
+
+       Files.copy(file.getInputStream(),Paths.get(path_directory+File.separator+file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
+          
+    }
 
 
 }
