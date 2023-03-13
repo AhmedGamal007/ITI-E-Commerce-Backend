@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.management.RuntimeErrorException;
 
+import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ import gov.iti.jets.ecommerce.business.dtos.ResponseDTO;
 import gov.iti.jets.ecommerce.business.services.CategoriesService;
 
 @RestController
-@RequestMapping("category")
+@RequestMapping("/category")
 public class CatergoryController {
     @Autowired
     private CategoriesService categoriesService;

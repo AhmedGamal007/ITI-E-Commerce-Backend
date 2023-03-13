@@ -7,36 +7,41 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
 @Entity
 @Table(name = "customer", catalog = "ecommerce")
 public class Customer extends User {
-
+    @Column(name = "is_male")
     private Boolean isMale = true;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "dob", length = 10)
     private Date dob;
+    @Column(name = "wallet_limit", nullable = false, precision = 22, scale = 0)
     private double walletLimit = 0.0;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     private Set<Address> addresses = new HashSet<Address>(0);
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     private Set<Orders> orderses = new HashSet<Orders>(0);
 
     public Customer() {
     }
 
-    public Customer(String userName, String email, String password) {
-        super(userName, email, password);
-    }
-
-    public Customer(String userName, String email, String password, String phone) {
-        super(userName, email, password, phone);
-    }
 
     public Customer(double walletLimit) {
         this.walletLimit = walletLimit;
     }
 
     public Customer(Boolean isMale, Date dob, double walletLimit, Set<Address> addresses, Set<Orders> orderses) {
+
         this.isMale = isMale;
         this.dob = dob;
         this.walletLimit = walletLimit;
@@ -44,7 +49,7 @@ public class Customer extends User {
         this.orderses = orderses;
     }
 
-    @Column(name = "is_male")
+
     public Boolean getIsMale() {
         return this.isMale;
     }
@@ -53,8 +58,7 @@ public class Customer extends User {
         this.isMale = isMale;
     }
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "dob", length = 10)
+
     public Date getDob() {
         return this.dob;
     }
@@ -63,7 +67,6 @@ public class Customer extends User {
         this.dob = dob;
     }
 
-    @Column(name = "wallet_limit", nullable = false, precision = 22, scale = 0)
     public double getWalletLimit() {
         return this.walletLimit;
     }
@@ -72,7 +75,6 @@ public class Customer extends User {
         this.walletLimit = walletLimit;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     public Set<Address> getAddresses() {
         return this.addresses;
     }
@@ -81,7 +83,6 @@ public class Customer extends User {
         this.addresses = addresses;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     public Set<Orders> getOrderses() {
         return this.orderses;
     }

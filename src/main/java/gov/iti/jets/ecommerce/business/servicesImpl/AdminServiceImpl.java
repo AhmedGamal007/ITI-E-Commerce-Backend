@@ -20,7 +20,7 @@ public class AdminServiceImpl  implements AdminService {
 
     @Override
     public AdminDTO find(String username, String password) {
-        Admin admin = adminRepo.findAdminByUserNameAndPassword(username, password);
+        Admin admin = adminRepo.findAdminByUsernameAndPassword(username, password);
         if (admin != null) {
 
             return adminMapper.adminToAdminDto(admin);
@@ -59,7 +59,7 @@ public class AdminServiceImpl  implements AdminService {
                 adminRegisterDTO.setPassword(oldAdmin.getPassword());
             }
             if (adminRegisterDTO.getUserName() == null) {
-                adminRegisterDTO.setUserName(oldAdmin.getUserName());
+                adminRegisterDTO.setUserName(oldAdmin.getUsername());
             }
             if (adminRegisterDTO.getEmail() == null) {
                 adminRegisterDTO.setEmail(oldAdmin.getEmail());

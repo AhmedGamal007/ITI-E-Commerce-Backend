@@ -20,13 +20,33 @@ import java.util.Set;
 @Table(name = "orders", catalog = "ecommerce")
 public class Orders implements java.io.Serializable {
 
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+
+    @Column(name = "id", unique = true, nullable = false)
     private Integer id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cust_id", nullable = false)
     private Customer customer;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "adress_id")
     private Address address;
+
+    @Column(name = "total_price", precision = 22, scale = 0)
     private Double totalPrice = 0.0;
+
+    @Column(name = "is_submitted")
     private Boolean isSubmitted = false;
+
+    @Column(name = "payment_type", length = 45)
     private String paymentType;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "submit_date", length = 19)
     private Timestamp submitDate;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orders")
     private Set<OrderHasProduct> orderHasProducts = new HashSet<OrderHasProduct>(0);
 
     public Orders() {
@@ -47,10 +67,7 @@ public class Orders implements java.io.Serializable {
         this.orderHasProducts = orderHasProducts;
     }
 
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
 
-    @Column(name = "id", unique = true, nullable = false)
     public Integer getId() {
         return this.id;
     }
@@ -59,8 +76,7 @@ public class Orders implements java.io.Serializable {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cust_id", nullable = false)
+
     public Customer getCustomer() {
         return this.customer;
     }
@@ -69,8 +85,7 @@ public class Orders implements java.io.Serializable {
         this.customer = customer;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "adress_id")
+
     public Address getAddress() {
         return this.address;
     }
@@ -79,7 +94,7 @@ public class Orders implements java.io.Serializable {
         this.address = address;
     }
 
-    @Column(name = "total_price", precision = 22, scale = 0)
+
     public Double getTotalPrice() {
         return this.totalPrice;
     }
@@ -88,7 +103,7 @@ public class Orders implements java.io.Serializable {
         this.totalPrice = totalPrice;
     }
 
-    @Column(name = "is_submitted")
+
     public Boolean getIsSubmitted() {
         return this.isSubmitted;
     }
@@ -97,7 +112,7 @@ public class Orders implements java.io.Serializable {
         this.isSubmitted = isSubmitted;
     }
 
-    @Column(name = "payment_type", length = 45)
+
     public String getPaymentType() {
         return this.paymentType;
     }
@@ -106,8 +121,7 @@ public class Orders implements java.io.Serializable {
         this.paymentType = paymentType;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "submit_date", length = 19)
+
     public Timestamp getSubmitDate() {
         return this.submitDate;
     }
@@ -116,7 +130,7 @@ public class Orders implements java.io.Serializable {
         this.submitDate = submitDate;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orders")
+
     public Set<OrderHasProduct> getOrderHasProducts() {
         return this.orderHasProducts;
     }
