@@ -30,31 +30,32 @@ public class AuthService {
     private final CustomerMapper customerMapper;
 
     public AuthResponse register(RegisterRequest request , Role role) {
-        User user ;
+        
         Object object;
         if(role == Role.ADMIN){
-            user = new Admin();
+            Admin user = new Admin();
             user.setUsername(request.getUserName());
             user.setEmail(request.getEmail());
             user.setPhone(request.getPhone());
             user.setRole(role);
             user.setPassword(passwordEncoder.encode(request.getPassword()));
-            Admin admin = adminRepo.save((Admin) user);
+            adminRepo.save(user);
             var jwtToken = jwtService.generateToken(user);
-            AdminResponse adminResponse = adminMapper.adminTOAdminResponse(admin);
+            AdminResponse adminResponse = adminMapper.adminTOAdminResponse(user);
             adminResponse.setToken(jwtToken);
             object =adminResponse;
 
         }else {
-            user = new Customer();
+            Customer user = new Customer();
             user.setUsername(request.getUserName());
             user.setEmail(request.getEmail());
             user.setPhone(request.getPhone());
             user.setRole(role);
+            user.setIsMale(request.getIsMale());
             user.setPassword(passwordEncoder.encode(request.getPassword()));
-            Customer customer= customerRepo.save((Customer) user);
+            customerRepo.save(user);
             var jwtToken = jwtService.generateToken(user);
-            CustomerResponse customerResponse = customerMapper.CustomerToCustomerResponse(customer);
+            CustomerResponse customerResponse = customerMapper.CustomerToCustomerResponse(user);
             customerResponse.setToken(jwtToken);
             object = customerResponse;
         }
