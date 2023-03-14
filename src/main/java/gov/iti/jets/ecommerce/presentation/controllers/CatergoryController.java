@@ -1,7 +1,6 @@
 package gov.iti.jets.ecommerce.presentation.controllers;
 
 
-import javax.management.RuntimeErrorException;
 
 import jakarta.annotation.security.RolesAllowed;
 import lombok.RequiredArgsConstructor;
@@ -33,26 +32,23 @@ public class CatergoryController {
        
         return new ResponseDTO("All categories", true, 200,  categoriesService.getAll());
        
+
     }
 
     // get category by id
     @GetMapping("/{id}")
     public ResponseDTO getById(@PathVariable int id) {
-       
-        return new ResponseDTO("All categories", true, 200, categoriesService.getById(id));
-        
+
+        // return categoriesService.getById(id);
+        return new ResponseDTO("categories by id", true, 200, categoriesService.getById(id));
+
     }
 
     @RolesAllowed("ADMIN")
     @PostMapping
     public void addCategory(@RequestBody CategoriesProductDTO category) {
 
-        try {
-            categoriesService.addCategory(category);
-        } catch (Exception e) {
-            // make your own custom exception!!!!!!!!!
-            throw new RuntimeErrorException(null);
-        }
+        categoriesService.addCategory(category);
 
     }
 
