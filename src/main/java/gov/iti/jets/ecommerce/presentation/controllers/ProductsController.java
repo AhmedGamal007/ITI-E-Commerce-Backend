@@ -1,5 +1,6 @@
 package gov.iti.jets.ecommerce.presentation.controllers;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.annotation.security.RolesAllowed;
 import java.io.File;
 import java.nio.file.Files;
@@ -48,6 +49,7 @@ public class ProductsController {
     }
 
     // Add Products
+    @SecurityRequirement(name = "BearerAuth")
     @RolesAllowed("ADMIN")
     @PostMapping
     public ResponseDTO addProduct(@RequestBody ProductCategoriesDTO productDTO) {
@@ -57,6 +59,7 @@ public class ProductsController {
     }
 
     // update product
+    @SecurityRequirement(name = "BearerAuth")
     @RolesAllowed("ADMIN")
     @PutMapping
     public ResponseDTO updateProduct(@RequestBody ProductCategoriesDTO productDTO) {
@@ -66,13 +69,14 @@ public class ProductsController {
     }
 
     // delete product by id
+    @SecurityRequirement(name = "BearerAuth")
     @RolesAllowed("ADMIN")
     @DeleteMapping("/{id}")
     public ResponseDTO deleteProduct(@PathVariable Integer id) {
         this.productService.deleteProduct(id);
         return new ResponseDTO("Delete Product Successfully", true, null);
     }
-
+    @SecurityRequirement(name = "BearerAuth")
     @PostMapping("/upload")
     public void uploadImage (@RequestParam("file") MultipartFile file ) throws Exception {
      

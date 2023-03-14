@@ -2,6 +2,7 @@ package gov.iti.jets.ecommerce.presentation.controllers;
 
 
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.annotation.security.RolesAllowed;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -44,6 +45,7 @@ public class CatergoryController {
 
     }
 
+    @SecurityRequirement(name = "BearerAuth")
     @RolesAllowed("ADMIN")
     @PostMapping
     public void addCategory(@RequestBody CategoriesProductDTO category) {
@@ -52,6 +54,7 @@ public class CatergoryController {
 
     }
 
+    @SecurityRequirement(name = "BearerAuth")
     @RolesAllowed("ADMIN")
     @PutMapping()
     public void updateCategory(@RequestBody CategoriesProductDTO category) {
@@ -60,6 +63,7 @@ public class CatergoryController {
 
     }
 
+    @SecurityRequirement(name = "BearerAuth")
     @RolesAllowed("ADMIN")
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteCategory(@PathVariable int id) {
@@ -71,6 +75,7 @@ public class CatergoryController {
         }
     }
 
+    @SecurityRequirement(name = "BearerAuth")
     @RolesAllowed("ADMIN")
     @DeleteMapping
     public ResponseEntity<HttpStatus> deleteAllCategory() {
