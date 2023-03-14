@@ -19,7 +19,7 @@ import java.util.Set;
 @Table(name = "customer", catalog = "ecommerce")
 public class Customer extends User {
     @Column(name = "is_male")
-    private Boolean isMale = true;
+    private Boolean isMale;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "dob", length = 10)
