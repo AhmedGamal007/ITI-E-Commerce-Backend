@@ -1,5 +1,6 @@
 package gov.iti.jets.ecommerce.presentation.controllers;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,8 @@ import gov.iti.jets.ecommerce.business.dtos.OrderProductDTO;
 import gov.iti.jets.ecommerce.business.dtos.ResponseDTO;
 import gov.iti.jets.ecommerce.business.services.ProductOrderService;
 
+
+@SecurityRequirement(name = "BearerAuth")
 @RestController
 @RequestMapping("/productOrder")
 public class ProductOrdersController {

@@ -2,6 +2,7 @@ package gov.iti.jets.ecommerce.presentation.controllers;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.annotation.security.RolesAllowed;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,8 @@ import gov.iti.jets.ecommerce.business.dtos.OrdersDTO;
 import gov.iti.jets.ecommerce.business.dtos.ResponseDTO;
 import gov.iti.jets.ecommerce.business.servicesImpl.OrdersServiceImpl;
 
+
+@SecurityRequirement(name = "BearerAuth")
 @RestController
 @RequestMapping("/order")
 public class OrdersController {
