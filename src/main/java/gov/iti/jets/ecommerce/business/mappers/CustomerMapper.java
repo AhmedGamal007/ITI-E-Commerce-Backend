@@ -18,5 +18,6 @@ public interface CustomerMapper {
     List<CustomerDTO> customerListToCustomerDtoList (List<Customer> customers);
     List<Customer> customerDtoListToCustomerList(List<CustomerDTO> customerDTOS);
 
+    @Mapping(target= "walletLimit", source = "walletLimit")
     CustomerResponse CustomerToCustomerResponse(Customer customer);
 }
