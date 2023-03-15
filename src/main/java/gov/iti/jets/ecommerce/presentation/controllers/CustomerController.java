@@ -66,7 +66,7 @@ public class CustomerController {
     }
     @RolesAllowed("CUSTOMER")
     @PutMapping("/walet/{id}/{price}")
-    public int updateWallet(@PathVariable Integer id , @PathVariable Double price){
-        return customerService.updateWallet(id,price);
+    public ResponseDTO updateWallet(@PathVariable Integer id , @PathVariable Double price){
+        return new ResponseDTO("updated successfully" , true , 200 ,customerService.updateWallet(id,price)) ;
     }
 }
