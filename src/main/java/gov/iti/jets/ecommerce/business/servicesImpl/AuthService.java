@@ -30,7 +30,22 @@ public class AuthService {
     private final CustomerMapper customerMapper;
 
     public AuthResponse register(RegisterRequest request , Role role) {
-        
+        if(userRepo.findUserByUsername(request.getUserName()).isPresent()){
+            return AuthResponse.builder()
+                    .message("Failed to Register UserName already exist")
+                    .status(false)
+                    .code(401)
+                    .object(null)
+                    .build();
+        }
+        if (userRepo.findUserByEmail(request.getEmail()).isPresent()){
+            return AuthResponse.builder()
+                    .message("Failed to Register Email already exist")
+                    .status(false)
+                    .code(402)
+                    .object(null)
+                    .build();
+        }
         Object object;
         if(role == Role.ADMIN){
             Admin user = new Admin();
@@ -65,6 +80,7 @@ public class AuthService {
         return AuthResponse.builder()
                 .message("Registered Successfully")
                 .status(true)
+                .code(200)
                 .object(object)
                 .build();
     }
@@ -73,6 +89,7 @@ public class AuthService {
        return register(request , Role.ADMIN);
     }
     public AuthResponse customerRegister(RegisterRequest request){
+
         return register(request , Role.CUSTOMER);
     }
 
