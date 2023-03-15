@@ -19,8 +19,8 @@ public class AuthController {
     public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request){
         return ResponseEntity.ok(service.customerRegister(request));
     }
-
     @RolesAllowed("ADMIN")
+
     @PostMapping("/admin/register")
     public ResponseEntity<AuthResponse> adminRegister(@RequestBody RegisterRequest request){
         return ResponseEntity.ok(service.adminRegister(request));
