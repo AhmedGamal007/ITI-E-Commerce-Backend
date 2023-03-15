@@ -1,5 +1,7 @@
 package gov.iti.jets.ecommerce.business.dtos;
 
+import java.util.Set;
+
 import gov.iti.jets.ecommerce.persistence.entities.Role;
 import lombok.*;
 
@@ -13,5 +15,7 @@ public class CustomerDTO {
     private Boolean isMale;
     private double walletLimit;
     private Role role;
+    private String email;
+    private String phone;
     
 }

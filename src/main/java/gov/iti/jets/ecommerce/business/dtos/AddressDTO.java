@@ -12,4 +12,5 @@ public class AddressDTO {
     private Integer buildingNum;
     private Integer floorNum;
     private String street;    
+    
 }
