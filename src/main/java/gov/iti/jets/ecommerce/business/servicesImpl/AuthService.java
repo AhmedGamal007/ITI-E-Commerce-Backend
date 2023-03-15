@@ -32,7 +32,7 @@ public class AuthService {
     public AuthResponse register(RegisterRequest request , Role role) {
         if(userRepo.findUserByUsername(request.getUserName()).isPresent()){
             return AuthResponse.builder()
-                    .message("Failed to Register UserName already exist")
+                    .message("Username already exist")
                     .status(false)
                     .code(401)
                     .object(null)
@@ -40,7 +40,7 @@ public class AuthService {
         }
         if (userRepo.findUserByEmail(request.getEmail()).isPresent()){
             return AuthResponse.builder()
-                    .message("Failed to Register Email already exist")
+                    .message("Email already exist")
                     .status(false)
                     .code(402)
                     .object(null)
@@ -97,12 +97,23 @@ public class AuthService {
         String message ;
         boolean status = true;
         Object object;
+        if(!userRepo.findUserByUsername(request.getUserName()).isPresent()){
+            return AuthResponse.builder()
+                    .message("Username Doesn't exist!")
+                    .status(false)
+                    .code(411)
+                    .object(null)
+                    .build();
+        }
+       
          authenticationManager.authenticate(
                  new UsernamePasswordAuthenticationToken(
                          request.getUserName(),
                          request.getPassword()
                  )
          );
+        
+      
          var user = userRepo.findUserByUsername(request.getUserName()).orElse(null);
          if (user == null ){
              message = "User Not found";
