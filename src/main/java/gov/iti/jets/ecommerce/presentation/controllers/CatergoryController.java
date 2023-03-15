@@ -1,10 +1,10 @@
 package gov.iti.jets.ecommerce.presentation.controllers;
 
-import java.util.List;
 
-import javax.management.RuntimeErrorException;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.annotation.security.RolesAllowed;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,21 +20,24 @@ import gov.iti.jets.ecommerce.business.dtos.CategoriesProductDTO;
 import gov.iti.jets.ecommerce.business.dtos.ResponseDTO;
 import gov.iti.jets.ecommerce.business.services.CategoriesService;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/category")
 public class CatergoryController {
-    @Autowired
-    private CategoriesService categoriesService;
-    @Autowired
-    private ResponseDTO responseDTO;
+    final private CategoriesService categoriesService;
 
+
+    // get all categories
     @GetMapping
     public ResponseDTO getAll() {
-        return new ResponseDTO("all categories", true, 200, categoriesService.getAll());
+       
+        return new ResponseDTO("All categories", true, 200,  categoriesService.getAll());
+       
+
     }
 
     // get category by id
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseDTO getById(@PathVariable int id) {
 
         // return categoriesService.getById(id);
@@ -42,6 +45,8 @@ public class CatergoryController {
 
     }
 
+    @SecurityRequirement(name = "BearerAuth")
+    @RolesAllowed("ADMIN")
     @PostMapping
     public void addCategory(@RequestBody CategoriesProductDTO category) {
 
@@ -49,14 +54,18 @@ public class CatergoryController {
 
     }
 
-    @PutMapping
+    @SecurityRequirement(name = "BearerAuth")
+    @RolesAllowed("ADMIN")
+    @PutMapping()
     public void updateCategory(@RequestBody CategoriesProductDTO category) {
 
         categoriesService.addCategory(category);
 
     }
 
-    @DeleteMapping("{id}")
+    @SecurityRequirement(name = "BearerAuth")
+    @RolesAllowed("ADMIN")
+    @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteCategory(@PathVariable int id) {
         try {
             categoriesService.deleteById(id);
@@ -66,6 +75,8 @@ public class CatergoryController {
         }
     }
 
+    @SecurityRequirement(name = "BearerAuth")
+    @RolesAllowed("ADMIN")
     @DeleteMapping
     public ResponseEntity<HttpStatus> deleteAllCategory() {
 

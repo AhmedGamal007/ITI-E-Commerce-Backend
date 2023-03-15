@@ -3,10 +3,12 @@ package gov.iti.jets.ecommerce.presentation.controllers;
 import gov.iti.jets.ecommerce.business.dtos.ResponseDTO;
 import gov.iti.jets.ecommerce.business.services.CustomerService;
 import gov.iti.jets.ecommerce.business.dtos.CustomerDTO;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.annotation.security.RolesAllowed;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
+@SecurityRequirement(name = "BearerAuth")
 @AllArgsConstructor
 @RestController
 @RequestMapping("/customer")
@@ -25,6 +27,8 @@ public class CustomerController {
     ) ;
     }
 
+
+    @RolesAllowed("ADMIN")
     @ResponseBody
     @GetMapping("/all")
     public ResponseDTO getAllCustomers(){
@@ -35,6 +39,7 @@ public class CustomerController {
                 customerService.getAll()
         ) ;
     }
+
 
    @PostMapping
    public ResponseDTO addCustomer(@RequestBody CustomerDTO customerDTO){

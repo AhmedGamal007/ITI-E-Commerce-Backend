@@ -5,7 +5,9 @@ import org.mapstruct.Mapper;
 import gov.iti.jets.ecommerce.business.dtos.AddressDTO;
 import gov.iti.jets.ecommerce.persistence.entities.Address;
 
-@Mapper
+import java.util.Set;
+
+@Mapper(componentModel = "spring")
 public interface AddressMapper {
     
 
@@ -13,7 +15,9 @@ public interface AddressMapper {
     AddressDTO AddressEntityToDTO(Address address);
 
     Address AddresDTOtoEntity(AddressDTO addressDTO);
-   
+
+    Set<AddressDTO> addressSetToAddressDTOSet(Set<Address> addressSet);
+
     // public AddressDTO addresstoDTO(Address address) {
     //     AddressDTO addressDTO = new AddressDTO();
     //     addressDTO.setArea(address.getArea());

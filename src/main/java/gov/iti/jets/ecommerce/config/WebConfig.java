@@ -1,4 +1,4 @@
-package gov.iti.jets.ecommerce.webconfig;
+package gov.iti.jets.ecommerce.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

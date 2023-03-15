@@ -1,4 +1,4 @@
-package gov.iti.jets.ecommerce.business.services;
+package gov.iti.jets.ecommerce.business.servicesImpl;
 
 import gov.iti.jets.ecommerce.business.dtos.*;
 import gov.iti.jets.ecommerce.business.mappers.AdminMapper;
@@ -30,31 +30,47 @@ public class AuthService {
     private final CustomerMapper customerMapper;
 
     public AuthResponse register(RegisterRequest request , Role role) {
-        User user ;
+        if(userRepo.findUserByUsername(request.getUserName()).isPresent()){
+            return AuthResponse.builder()
+                    .message("Failed to Register UserName already exist")
+                    .status(false)
+                    .code(401)
+                    .object(null)
+                    .build();
+        }
+        if (userRepo.findUserByEmail(request.getEmail()).isPresent()){
+            return AuthResponse.builder()
+                    .message("Failed to Register Email already exist")
+                    .status(false)
+                    .code(402)
+                    .object(null)
+                    .build();
+        }
         Object object;
         if(role == Role.ADMIN){
-            user = new Admin();
+            Admin user = new Admin();
             user.setUsername(request.getUserName());
             user.setEmail(request.getEmail());
             user.setPhone(request.getPhone());
             user.setRole(role);
             user.setPassword(passwordEncoder.encode(request.getPassword()));
-            Admin admin = adminRepo.save((Admin) user);
+            adminRepo.save(user);
             var jwtToken = jwtService.generateToken(user);
-            AdminResponse adminResponse = adminMapper.adminTOAdminResponse(admin);
+            AdminResponse adminResponse = adminMapper.adminTOAdminResponse(user);
             adminResponse.setToken(jwtToken);
             object =adminResponse;
 
         }else {
-            user = new Customer();
+            Customer user = new Customer();
             user.setUsername(request.getUserName());
             user.setEmail(request.getEmail());
             user.setPhone(request.getPhone());
             user.setRole(role);
+            user.setIsMale(request.getIsMale());
             user.setPassword(passwordEncoder.encode(request.getPassword()));
-            Customer customer= customerRepo.save((Customer) user);
+            customerRepo.save(user);
             var jwtToken = jwtService.generateToken(user);
-            CustomerResponse customerResponse = customerMapper.CustomerToCustomerResponse(customer);
+            CustomerResponse customerResponse = customerMapper.CustomerToCustomerResponse(user);
             customerResponse.setToken(jwtToken);
             object = customerResponse;
         }
@@ -64,6 +80,7 @@ public class AuthService {
         return AuthResponse.builder()
                 .message("Registered Successfully")
                 .status(true)
+                .code(200)
                 .object(object)
                 .build();
     }
@@ -72,6 +89,7 @@ public class AuthService {
        return register(request , Role.ADMIN);
     }
     public AuthResponse customerRegister(RegisterRequest request){
+
         return register(request , Role.CUSTOMER);
     }
 
@@ -99,7 +117,7 @@ public class AuthService {
          }else {
              var jwtToken = jwtService.generateToken(user);
              CustomerResponse customerResponse = customerMapper.CustomerToCustomerResponse(
-                     customerRepo.findCustomerByUsername(request.getUserName()).get()
+                     customerRepo.findCustomerByUsername(request.getUserName()).orElseThrow()
              );
              customerResponse.setToken(jwtToken);
              object = customerResponse;

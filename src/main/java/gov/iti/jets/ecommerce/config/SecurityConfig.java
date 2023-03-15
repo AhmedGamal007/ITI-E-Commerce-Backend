@@ -25,17 +25,29 @@ public class SecurityConfig {
     private final JwtAuthFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
 
+    private static final String[] WHITELIST = {
+            "/auth/**",
+            "/category/**",
+            "/products/**",
+            "/v3/api-docs/",
+            "/v3/api-docs/**",
+            "/swagger-resources**",
+            "/swagger-ui**",
+            "/swagger-ui/**"
+    };
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf()
-                .disable() //disable some kind of verification
+                .csrf().disable()
+                .headers().frameOptions().disable().and()
+                .cors().and() //disable some kind of verification
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/**","/customer/**","/admin/**","/cart/**","/category/**","/order/**","/products/**", "/productOrder/**") //my white list any one can access
+                .shouldFilterAllDispatcherTypes(false)
+                .requestMatchers(WHITELIST) //my white list any one can access
                 .permitAll()
-//                .anyRequest() //any other requests must be auth
-//                .authenticated()
+                .anyRequest() //any other requests must be auth
+                .authenticated()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS) //let spring create new session for every request

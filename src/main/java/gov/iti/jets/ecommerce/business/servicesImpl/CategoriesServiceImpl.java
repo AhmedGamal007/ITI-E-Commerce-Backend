@@ -28,7 +28,7 @@ public class CategoriesServiceImpl implements CategoriesService {
     @Override
     public List<CategoriesProductDTO> getAll() {
 
-        return categoryMapper.categoriesToCategoriesDTO(categoriesRepo.findAll());
+        return categoryMapper.categoriesToCategoriesDTO(categoriesRepo.findAllCategories());
     }
 
     @Override
@@ -52,7 +52,7 @@ public class CategoriesServiceImpl implements CategoriesService {
     @Override
     public void deleteById(int id)
     {
-        categoriesRepo.deleteById(id);
+        categoriesRepo.deleteCategoryById(id);
     }
 
     @Override

@@ -2,6 +2,8 @@ package gov.iti.jets.ecommerce.presentation.controllers;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.annotation.security.RolesAllowed;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,8 +20,10 @@ import gov.iti.jets.ecommerce.business.dtos.OrdersDTO;
 import gov.iti.jets.ecommerce.business.dtos.ResponseDTO;
 import gov.iti.jets.ecommerce.business.services.OrdersService;
 
+
+@SecurityRequirement(name = "BearerAuth")
 @RestController
-@RequestMapping("order")
+@RequestMapping("/order")
 public class OrdersController {
 
     private final OrdersService ordersService;
@@ -28,6 +32,7 @@ public class OrdersController {
         this.ordersService = ordersService;
     }
 
+    @RolesAllowed("ADMIN")
     @GetMapping("/orders")
     public ResponseDTO getAllOrders() {
         return new ResponseDTO("ddf", true, 200, ordersService.getAllOrders());
@@ -39,6 +44,8 @@ public class OrdersController {
         return new ResponseDTO("order", true, 200, ordersService.getOrderById(id));
     }
 
+
+//history
     @GetMapping("/customer/{id}")
     public ResponseDTO getCustomerOrderById(@PathVariable Integer id) {
             return new ResponseDTO("customer order",true,200 ,ordersService.getCustomerOrders(id));
@@ -50,7 +57,7 @@ public class OrdersController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteOrder(Integer id) {
+    public void deleteOrder(@PathVariable Integer id) {
         ordersService.removeOrder(id);
     }
 

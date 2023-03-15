@@ -4,6 +4,7 @@ import gov.iti.jets.ecommerce.business.dtos.AdminDTO;
 import gov.iti.jets.ecommerce.business.dtos.AdminRegisterDTO;
 import gov.iti.jets.ecommerce.business.services.AdminService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.annotation.security.RolesAllowed;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
+@SecurityRequirement(name = "BearerAuth")
+@RolesAllowed("ADMIN")
 @AllArgsConstructor
 @RestController
 @RequestMapping("/admin")

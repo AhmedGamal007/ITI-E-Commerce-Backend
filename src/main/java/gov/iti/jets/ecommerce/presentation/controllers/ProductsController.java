@@ -2,12 +2,14 @@ package gov.iti.jets.ecommerce.presentation.controllers;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.annotation.security.RolesAllowed;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
-import org.springframework.core.io.ClassPathResource;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,7 +41,7 @@ public class ProductsController {
     @GetMapping
     public ResponseDTO getAllProducts() {
 
-        return new ResponseDTO("All products", true, 200, productService.getAllProducts());
+        return new ResponseDTO("All products", true, 200, productService.findALlProducts());
 
     }
 
@@ -73,7 +75,8 @@ public class ProductsController {
 
 
     // Add Products
-    // Authorization required ****Pending****
+    @SecurityRequirement(name = "BearerAuth")
+    @RolesAllowed("ADMIN")
     @PostMapping
     public ResponseDTO addProduct(@RequestBody ProductCategoriesDTO productDTO) {
 
@@ -82,7 +85,8 @@ public class ProductsController {
     }
 
     // update product
-    // Authorization required ****Pending****
+    @SecurityRequirement(name = "BearerAuth")
+    @RolesAllowed("ADMIN")
     @PutMapping
     public ResponseDTO updateProduct(@RequestBody ProductCategoriesDTO productDTO) {
 
@@ -91,14 +95,14 @@ public class ProductsController {
     }
 
     // delete product by id
-    // Authorization required ****Pending****
-    @DeleteMapping
+    @SecurityRequirement(name = "BearerAuth")
+    @RolesAllowed("ADMIN")
+    @DeleteMapping("/{id}")
     public ResponseDTO deleteProduct(@PathVariable Integer id) {
-
         this.productService.deleteProduct(id);
         return new ResponseDTO("Delete Product Successfully", true, null);
     }
-
+    @SecurityRequirement(name = "BearerAuth")
     @PostMapping("/upload")
     public void uploadImage (@RequestParam("file") MultipartFile file ) throws Exception {
      
