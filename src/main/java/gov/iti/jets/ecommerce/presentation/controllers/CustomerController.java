@@ -64,4 +64,9 @@ public class CustomerController {
                 customerService.update(customerDTO)
         ) ;
     }
+    @RolesAllowed("CUSTOMER")
+    @PutMapping("/walet/{id}/{price}")
+    public int updateWallet(@PathVariable Integer id , @PathVariable Double price){
+        return customerService.updateWallet(id,price);
+    }
 }

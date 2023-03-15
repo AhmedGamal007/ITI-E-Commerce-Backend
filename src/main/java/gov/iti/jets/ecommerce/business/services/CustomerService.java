@@ -12,4 +12,6 @@ public interface CustomerService {
      boolean delete(Integer customerId);
      boolean delete(CustomerDTO customerDTO);
      CustomerDTO update(CustomerDTO customerDTO);
+
+    int updateWallet(Integer id, Double price);
 }

@@ -75,4 +75,9 @@ public class CustomerServiceImpl implements CustomerService {
         return customerMapper.customerToCustomerDto(customer);
     }
 
+    @Override
+    public int updateWallet(Integer id, Double price) {
+        return customerRepo.updateWallet(id , price);
+    }
+
 }
