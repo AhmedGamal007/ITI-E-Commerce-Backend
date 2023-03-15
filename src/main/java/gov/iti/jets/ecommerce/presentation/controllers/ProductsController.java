@@ -37,7 +37,7 @@ public class ProductsController {
     @GetMapping
     public ResponseDTO getAllProducts() {
 
-        return new ResponseDTO("All products", true, 200, productService.getAllProducts());
+        return new ResponseDTO("All products", true, 200, productService.findALlProducts());
 
     }
 

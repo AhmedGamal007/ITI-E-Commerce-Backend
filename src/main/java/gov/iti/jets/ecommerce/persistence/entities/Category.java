@@ -31,6 +31,9 @@ public class Category implements java.io.Serializable {
     @Column(name = "description", length = 255)
     private String description;
 
+    @Column(name = "is_deleted")
+    private boolean isDeleted  = false;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "product_has_category", catalog = "ecommerce", joinColumns = {
             @JoinColumn(name = "category_id", nullable = false, updatable = false) }, inverseJoinColumns = {

@@ -2,6 +2,8 @@ package gov.iti.jets.ecommerce.business.servicesImpl;
 
 import java.util.List;
 import java.util.Optional;
+
+import gov.iti.jets.ecommerce.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 
@@ -29,12 +31,17 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
+    @Override
+    public List<ProductCategoriesDTO> findALlProducts() {
+        return productMapper.productToProductDto(productRepo.findAllProducts());
+    }
+
     public Optional<ProductCategoriesDTO> getProduct(Integer id) {
 
         Optional<Product> product = productRepo.findById(id);
 
         if (product.isEmpty()) {
-            // throwing an exception
+            throw new ResourceNotFoundException(id);
         }
 
         return (product.map(productMapper::productToProductDtoId));
@@ -54,7 +61,7 @@ public class ProductServiceImpl implements ProductService {
 
     public void deleteProduct(Integer id) {
 
-        productRepo.deleteById(id);
+        productRepo.deleteProductById(id);
     }
 
 }

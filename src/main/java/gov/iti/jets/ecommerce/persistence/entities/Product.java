@@ -46,6 +46,10 @@ public class Product  implements java.io.Serializable {
     @Column(name="rate", precision=22, scale=0)
      private Double rate = 0.0;
 
+    @Column(name = "is_deleted")
+    private boolean isDeleted  = false;
+
+
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(name="product_has_category", catalog="ecommerce", joinColumns = {
             @JoinColumn(name="product_id", nullable=false, updatable=false) }, inverseJoinColumns = {
