@@ -8,5 +8,6 @@ public interface ProductOrderService {
     public void addProductOrder(OrderProductDTO ordersDTO);
     public void deleteProductOrder(OrderProductDTO ordersDTO);
     public Integer chickProductAddedToCart(Integer productId, Integer orderId);
+    public void deleteProductFromCart(Integer productId, Integer orderId);
 
 }

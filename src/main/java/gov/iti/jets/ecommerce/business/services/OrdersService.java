@@ -2,7 +2,7 @@ package gov.iti.jets.ecommerce.business.services;
 
 import java.util.List;
 
-
+import gov.iti.jets.ecommerce.business.dtos.AddressDTO;
 import gov.iti.jets.ecommerce.business.dtos.OrdersDTO;
 
 public interface OrdersService  {
@@ -13,4 +13,6 @@ public interface OrdersService  {
     public OrdersDTO getCart(Integer id);
     public void updateOrder(OrdersDTO ordersDTO);
     public List<OrdersDTO> getCustomerOrders(Integer id);
+    public void addAddress(AddressDTO addressDTO);
+    public List<AddressDTO> getAddressForCustomer(Integer id);
 }

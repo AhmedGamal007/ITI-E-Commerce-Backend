@@ -11,5 +11,6 @@ public class AddressDTO {
     private String area;
     private Integer buildingNum;
     private Integer floorNum;
-    private String street;    
+    private String street;
+    private CustomerDTO customer;    
 }

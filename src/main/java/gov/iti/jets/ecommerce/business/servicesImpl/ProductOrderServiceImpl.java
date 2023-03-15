@@ -41,5 +41,11 @@ public class ProductOrderServiceImpl implements ProductOrderService {
     public Integer chickProductAddedToCart(Integer productId, Integer orderId) {
         return this.orderHasProductRepo.chickProductAddedToCart(productId, orderId);
     }
+
+
+    @Override
+    public void deleteProductFromCart(Integer productId, Integer orderId) {
+        this.orderHasProductRepo.deleteProductFromCart(productId, orderId);
+    }
     
 }

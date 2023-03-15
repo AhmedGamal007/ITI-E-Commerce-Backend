@@ -1,5 +1,6 @@
 package gov.iti.jets.ecommerce.presentation.controllers;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +30,12 @@ public class ProductOrdersController {
     @PostMapping
     public ResponseDTO addProductToCustomerOrder(@RequestBody OrderProductDTO orderProductDTO) {
         this.productOrderService.addProductOrder(orderProductDTO);
+        return new ResponseDTO("succsess", true, 200);
+    }
+
+    @DeleteMapping("/{productId}/{orderId}")
+    public ResponseDTO deleteProductFromCart(@PathVariable Integer productId, @PathVariable Integer orderId) {
+        this.productOrderService.deleteProductFromCart(productId, orderId);
         return new ResponseDTO("succsess", true, 200);
     }
 }

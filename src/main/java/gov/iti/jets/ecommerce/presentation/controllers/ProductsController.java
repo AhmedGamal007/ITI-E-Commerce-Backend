@@ -1,5 +1,7 @@
 package gov.iti.jets.ecommerce.presentation.controllers;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,6 +10,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import gov.iti.jets.ecommerce.business.dtos.OrderProductDTO;
 import gov.iti.jets.ecommerce.business.dtos.ProductCategoriesDTO;
 import gov.iti.jets.ecommerce.business.dtos.ResponseDTO;
 import gov.iti.jets.ecommerce.business.services.ProductService;
@@ -30,12 +34,34 @@ public class ProductsController {
 
     }
 
+    // // Get Stock Of Product By ID
+    // @GetMapping("/stock/{id}")
+    // public ResponseDTO getStockById(@PathVariable Integer id){
+    //     return new ResponseDTO("stock", true, 200, productService.getStockById(id));
+    // }
+
     // Get Product By ID
     @GetMapping("/{id}")
     public ResponseDTO getProduct(@PathVariable Integer id) {
 
         return new ResponseDTO("product", true, 200, productService.getProduct(id));
     }
+
+    // Authorization required ****Pending****
+    @PostMapping("/stock")
+    public ResponseDTO checkStockProduct(@RequestBody List<OrderProductDTO> productDTO) {
+
+        return new ResponseDTO("Update Product Successfully", true, 200, this.productService.checkStockProduct(productDTO));
+    }
+
+     // Authorization required ****Pending****
+     @PutMapping("/stock")
+     public void updateStockProduct(@RequestBody List<OrderProductDTO> productDTO) {
+ 
+         this.productService.updateStockProduct(productDTO);
+     }
+
+
 
     // Add Products
     // Authorization required ****Pending****

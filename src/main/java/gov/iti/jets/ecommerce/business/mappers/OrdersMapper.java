@@ -5,6 +5,7 @@ import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import gov.iti.jets.ecommerce.business.dtos.AddressDTO;
+import gov.iti.jets.ecommerce.business.dtos.CustomerDTO;
 import gov.iti.jets.ecommerce.business.dtos.CustomerOrderDTO;
 import gov.iti.jets.ecommerce.business.dtos.OrderHasProductDTO;
 import gov.iti.jets.ecommerce.business.dtos.OrdersDTO;
@@ -18,11 +19,21 @@ import gov.iti.jets.ecommerce.persistence.entities.Product;
 @Mapper(componentModel = "spring")
 public interface OrdersMapper {
 
+    @Mapping(target = "username" , source = "username")
+    @Mapping(target = "role",source = "role")
+    CustomerDTO customerToCustomerDto(Customer customer);
+
+    Customer customerDtoToCustomer(CustomerDTO customerDTO);
+
+
     AddressDTO addressToAddressDTO(Address address);
 
-    @Mapping(target = "customer", ignore = true)
     @Mapping(target = "orderses", ignore = true)
     Address addressDTOToAddress(AddressDTO address);
+
+    List<AddressDTO> addressToAddressDTO(List<Address> address);
+
+    List<Address> addressDTOToAddress(List<AddressDTO> address);
 
     CustomerOrderDTO customerToCustomerOrderDTO(Customer customer);
 

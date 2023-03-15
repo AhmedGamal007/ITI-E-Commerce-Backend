@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 public class OrderProductDTO {
 
     private OrderProductIdDTO id;
+    private ProductsOrderDTO product;
     private Integer amount;
 }
