@@ -39,12 +39,8 @@ public class OrdersController {
     }
 
     @GetMapping("/customer/{id}")
-    public ResponseEntity<List<OrdersDTO>> getCustomerOrderById(@PathVariable Integer id) {
-        try {
-            return new ResponseEntity<>(ordersServiceImpl.getCustomerOrders(id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseDTO getCustomerOrderById(@PathVariable Integer id) {
+            return new ResponseDTO("customer order",true,200 ,ordersServiceImpl.getCustomerOrders(id));
     }
 
     @PostMapping
