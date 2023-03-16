@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface CategoriesRepo extends JpaRepository<Category , Integer> {
-    @Query(value = "From Category c WHERE c.isDeleted = false ")
+    @Query(value = "From Category c WHERE c.isDeleted = false order by c.name")
     List<Category> findAllCategories();
 
 

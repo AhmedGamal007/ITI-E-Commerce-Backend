@@ -22,7 +22,7 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     @Query(value = "update product set stock = stock - ? where id = ?", nativeQuery = true)
     void updateStock(Integer amount, Integer id);
 
-    @Query(value = "From Product p WHERE p.isDeleted = false ")
+    @Query(value = "From Product p WHERE p.isDeleted = false order by p.name")
     List<Product> findAllProducts();
 
 
