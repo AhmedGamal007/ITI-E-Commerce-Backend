@@ -149,7 +149,7 @@
                     </annotationProcessorPaths>
                     <compilerArgs>
                         <compilerArg>
-                            -Amapstruct.verbose=true
+                            -mapstruct.verbose=true
                             -Amapstruct.defaultComponentModel=spring
                         </compilerArg>
                     </compilerArgs>

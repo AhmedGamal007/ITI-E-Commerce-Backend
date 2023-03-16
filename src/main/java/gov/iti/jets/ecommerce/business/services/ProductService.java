@@ -18,6 +18,7 @@ public interface ProductService {
     // public Integer getStockById(Integer id);
     public List<Integer> checkStockProduct(List<OrderProductDTO> productDTO);
 	public void updateStockProduct(List<OrderProductDTO> productDTO);
+    public Object findALlProductsByTime();
 
 
 }

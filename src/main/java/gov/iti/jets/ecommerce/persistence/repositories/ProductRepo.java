@@ -25,6 +25,9 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     @Query(value = "From Product p WHERE p.isDeleted = false order by p.name")
     List<Product> findAllProducts();
 
+    @Query(value = "From Product p WHERE p.isDeleted = false")
+    List<Product> findAllProductsByTime();
+
 
     @Modifying
     @Transactional

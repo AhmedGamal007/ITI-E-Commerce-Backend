@@ -84,4 +84,10 @@ public class ProductServiceImpl implements ProductService {
             this.productRepo.updateStock(product.getAmount(), product.getProduct().getId());
         });
     }
+
+    @Override
+    public List<ProductCategoriesDTO> findALlProductsByTime() {
+        return productMapper.productToProductDto(productRepo.findAllProductsByTime());
+
+    }
 }
