@@ -16,9 +16,10 @@ public interface ProductService {
     public void addProduct (ProductCategoriesDTO productDTO);
     public void updateProduct (ProductCategoriesDTO productDTO);
     public void deleteProduct (Integer id);
-    // public Integer getStockById(Integer id);
     public List<Integer> checkStockProduct(List<OrderProductDTO> productDTO);
 	public void updateStockProduct(List<OrderProductDTO> productDTO);
     public List<ProductWithoutCategriesDTO> findAllProductsByCategoryId(Integer id);
+    public Object findALlProductsByTime();
+
 
 }

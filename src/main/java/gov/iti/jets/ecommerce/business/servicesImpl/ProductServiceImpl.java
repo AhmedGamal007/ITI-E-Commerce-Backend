@@ -90,4 +90,10 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductWithoutCategriesDTO> findAllProductsByCategoryId(Integer id) {
        return productMapper.productWithoutCategriesToProduct(productRepo.findAllProductsByCategoryId(id));
     }
+
+    @Override
+    public List<ProductCategoriesDTO> findALlProductsByTime() {
+        return productMapper.productToProductDto(productRepo.findAllProductsByTime());
+
+    }
 }

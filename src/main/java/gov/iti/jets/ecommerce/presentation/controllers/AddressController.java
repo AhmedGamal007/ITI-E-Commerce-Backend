@@ -1,6 +1,5 @@
 package gov.iti.jets.ecommerce.presentation.controllers;
 
-import gov.iti.jets.ecommerce.business.dtos.AddressDTO;
 import gov.iti.jets.ecommerce.business.dtos.ResponseDTO;
 import gov.iti.jets.ecommerce.business.services.AddressService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Set;
 
 @SecurityRequirement(name = "BearerAuth")
 @RolesAllowed({"ADMIN","CUSTOMER"})

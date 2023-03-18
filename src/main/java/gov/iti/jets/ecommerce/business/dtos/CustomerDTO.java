@@ -1,7 +1,5 @@
 package gov.iti.jets.ecommerce.business.dtos;
 
-import java.util.Set;
-
 import gov.iti.jets.ecommerce.persistence.entities.Role;
 import lombok.*;
 

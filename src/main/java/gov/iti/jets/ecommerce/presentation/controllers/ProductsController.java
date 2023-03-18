@@ -45,6 +45,12 @@ public class ProductsController {
 
     }
 
+    @GetMapping("/time")
+    public ResponseDTO getAllProductsByTime() {
+
+        return new ResponseDTO("All products", true, 200, productService.findALlProductsByTime());
+
+    }
     // // Get Stock Of Product By ID
     // @GetMapping("/stock/{id}")
     // public ResponseDTO getStockById(@PathVariable Integer id){

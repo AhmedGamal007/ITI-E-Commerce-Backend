@@ -6,7 +6,6 @@ import gov.iti.jets.ecommerce.business.mappers.CustomerMapper;
 import gov.iti.jets.ecommerce.persistence.entities.Admin;
 import gov.iti.jets.ecommerce.persistence.entities.Customer;
 import gov.iti.jets.ecommerce.persistence.entities.Role;
-import gov.iti.jets.ecommerce.persistence.entities.User;
 import gov.iti.jets.ecommerce.persistence.repositories.AdminRepo;
 import gov.iti.jets.ecommerce.persistence.repositories.CustomerRepo;
 import gov.iti.jets.ecommerce.persistence.repositories.UserRepo;
