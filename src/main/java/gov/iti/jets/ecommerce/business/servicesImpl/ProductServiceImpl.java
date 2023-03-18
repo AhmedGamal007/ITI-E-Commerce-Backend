@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import gov.iti.jets.ecommerce.business.dtos.OrderProductDTO;
 import gov.iti.jets.ecommerce.business.dtos.ProductCategoriesDTO;
+import gov.iti.jets.ecommerce.business.dtos.ProductWithoutCategriesDTO;
 import gov.iti.jets.ecommerce.business.mappers.ProductHasCategoriesMapper;
 import gov.iti.jets.ecommerce.business.services.ProductService;
 import gov.iti.jets.ecommerce.persistence.entities.Product;
@@ -83,5 +84,10 @@ public class ProductServiceImpl implements ProductService {
         productDTO.forEach((product) ->{
             this.productRepo.updateStock(product.getAmount(), product.getProduct().getId());
         });
+    }
+
+    @Override
+    public List<ProductWithoutCategriesDTO> findAllProductsByCategoryId(Integer id) {
+       return productMapper.productWithoutCategriesToProduct(productRepo.findAllProductsByCategoryId(id));
     }
 }

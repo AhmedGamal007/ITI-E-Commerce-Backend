@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import gov.iti.jets.ecommerce.business.dtos.OrderProductDTO;
 import gov.iti.jets.ecommerce.business.dtos.ProductCategoriesDTO;
+import gov.iti.jets.ecommerce.business.dtos.ProductWithoutCategriesDTO;
 
 
 public interface ProductService {
@@ -18,6 +19,6 @@ public interface ProductService {
     // public Integer getStockById(Integer id);
     public List<Integer> checkStockProduct(List<OrderProductDTO> productDTO);
 	public void updateStockProduct(List<OrderProductDTO> productDTO);
-
+    public List<ProductWithoutCategriesDTO> findAllProductsByCategoryId(Integer id);
 
 }

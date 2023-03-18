@@ -30,4 +30,11 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     @Transactional
     @Query(value = "UPDATE Product p SET p.isDeleted = true WHERE p.id = :id")
     void deleteProductById(Integer id);
+
+    // @Query(value = "From Product p WHERE p.isDeleted = false and p.categories.id = :id")
+    @Query(value = "select * from product p inner join product_has_category po ON p.id = po.product_id inner JOIN category ca ON ca.id = ? where p.is_deleted=false" ,nativeQuery = true)
+    List<Product> findAllProductsByCategoryId(Integer id);
+
+
+    
 }

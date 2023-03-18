@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface CategoriesRepo extends JpaRepository<Category , Integer> {
-    @Query(value = "From Category c WHERE c.isDeleted = false order by c.name")
+    @Query(value = "From Category c INNER JOIN c.products p WHERE c.isDeleted = false and p.isDeleted = false order by c.name")
     List<Category> findAllCategories();
 
 
@@ -18,4 +18,6 @@ public interface CategoriesRepo extends JpaRepository<Category , Integer> {
     @Transactional
     @Query(value = "UPDATE Category c SET c.isDeleted = true WHERE c.id = :id")
     void deleteCategoryById(Integer id);
+
+    
 }

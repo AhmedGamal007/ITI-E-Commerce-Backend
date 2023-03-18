@@ -106,10 +106,17 @@ public class ProductsController {
     @PostMapping("/upload")
     public void uploadImage (@RequestParam("file") MultipartFile file ) throws Exception {
      
-       String path_directory="D:\\Final Front\\-Frontend-ecommerce\\src\\assets\\images";
+        String path_directory="D:\\ITI\\.ITI Project GP\\-Frontend-ecommerce\\src\\assets\\images";
 
        Files.copy(file.getInputStream(),Paths.get(path_directory+File.separator+file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
           
+    }
+
+
+    @GetMapping("/products/{id}")
+    public ResponseDTO getProductWithoutCat(@PathVariable Integer id) {
+
+        return new ResponseDTO("product", true, 200, productService.findAllProductsByCategoryId(id));
     }
 
 
